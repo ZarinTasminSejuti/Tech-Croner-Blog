@@ -1,5 +1,5 @@
 import Banner from "../components/Banner";
-import Navbar from "../components/Navbar";
+
 
 const Home = () => {
 
@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <div>
-          <Navbar></Navbar>
+     
           <Banner post={mainFeaturedPost}></Banner>
      
     </div>

@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
 import swal from "sweetalert";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-
+import { Button, TextField } from "@mui/material";
+import GoogleIcon from '@mui/icons-material/Google';
 
 
 const Login = () => {
@@ -63,45 +63,40 @@ const Login = () => {
             </p>
           </div>
 
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className=" w-full max-w-sm mx-auto p-7 shadow-xl bg-base-100">
             <div className="card-body">
               <form onSubmit={handleLogin}>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Email</span>
-                  </label>
-
-                  {/* email  */}
-                  <input
-                    type="email"
-                    placeholder="Enter your email..."
-                    className="input input-bordered"
-                    name="email"
-                    required
-                  />
-                </div>
+              <TextField
+              className=""
+              label="Email"
+              variant="outlined"
+              color="primary"
+              type="text"
+              placeholder="Enter your email address..."
+              name="photo"
+              required
+              fullWidth
+            />
 
                 {/* password  */}
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Password</span>
-                  </label>
-
-                  <input
-                    type="password"
-                    placeholder="Enter your password..."
-                    className="input input-bordered"
-                    name="password"
-                    required
-                  />
-                </div>
+                <TextField
+              className=""
+              label="Password"
+              variant="outlined"
+              color="primary"
+              type="password"
+              placeholder="Enter your password..."
+              name="photo"
+              required
+              fullWidth
+            />
 
                 {/* login button */}
-                <div className="form-control mt-6">
-                  <button className="btn text-white bg-red-600 hover:text-white hover:bg-blue-800">
-                    Login
-                  </button>
-                </div>
+                <div className="mt-8 text-center">
+            <Button variant="contained">
+  Login
+</Button>
+            </div>
               </form>
 
               <p className="mt-4 text-center text-gray-500">or login with</p>
@@ -109,17 +104,18 @@ const Login = () => {
               {/* google button */}
               <p className="text-center my-2">
                 {" "}
-                <button
-                  onClick={handleGoogle}
+                <Button
+              onClick={handleGoogle}
+              color="action"
                   className="btn w-1/2 text-white border-none bg-blue-500 hover:bg-red-600"
                 >
-                  <FaGoogle></FaGoogle>Google
-                </button>
+                  <GoogleIcon></GoogleIcon>Google
+                </Button>
               </p>
 
               <p className="text-center">
                 Do not have an account?{" "}
-                <Link to="/register" className="text-red-600 font-semibold">
+                <Link to="/register" className="text-blue-600 font-semibold">
                   Register here
                 </Link>
               </p>
