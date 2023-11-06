@@ -58,7 +58,7 @@ const Login = () => {
       </div>
 
       <div className=" w-full max-w-sm mx-auto p-7 shadow-xl bg-base-100">
-        <form onSubmit={handleLogin} className="space-y-4 w-full" noValidate autoComplete="off">
+        <form onSubmit={handleLogin} className="space-y-4 w-full">
           <TextField
             label="Email"
             variant="outlined"
@@ -78,14 +78,14 @@ const Login = () => {
             color="primary"
             type="password"
             placeholder="Enter your password..."
-            name="photo"
+            name="password"
             required
             fullWidth
           />
 
           {/* login button */}
           <div className=" text-center">
-            <Button variant="contained">Login</Button>
+            <Button type="submit" variant="contained">Login</Button>
           </div>
         </form>
 

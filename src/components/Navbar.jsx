@@ -9,18 +9,31 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 //  import Avatar from '@mui/material/Avatar';
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
+
 import MenuItem from "@mui/material/MenuItem";
 import { useContext } from "react";
 import DevicesIcon from "@mui/icons-material/Devices";
 import { AuthContext } from "../providers/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 
-const pages = ["Home", "Add Blog", "All Blogs", "Featured Blogs", "Wishlist"];
+
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const Navbar = () => {
+
+
+  const pages = [
+    { key: "home", content: <NavLink to="/">Home</NavLink> },
+    { key: "add-blog", content: <NavLink to="/add-blog">Add Blog</NavLink> },
+    { key: "all-blogs", content: <NavLink to="/all-blogs">All Blogs</NavLink> },
+    { key: "featured-blogs", content: <NavLink to="/featured-blogs">Featured Blogs</NavLink> },
+    { key: "wishlist", content: <NavLink to="/wishlist">Wishlist</NavLink> },
+  ];
+  
+
+
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   //   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -42,7 +55,7 @@ const Navbar = () => {
   //navigate after logout
   const navigate = useNavigate();
 
-  const { userDetails, logOut } = useContext(AuthContext);
+  const { user, userDetails, logOut } = useContext(AuthContext);
 
   const handleLogOut = () => {
     logOut()
@@ -112,8 +125,8 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.key} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.content}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -143,29 +156,35 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.key}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                {page.content}
               </Button>
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Your Avatar">
-              <img
+          <Box>
+          {user ? (
+         <>
+                <div className="flex gap-3 items-center">
+                <img
                 src={userDetails.photoURL}
                 alt={userDetails.displayName}
-                className="w-10 rounded "
+                className="w-10 rounded"
               />
-            </Tooltip>
+           
             <span className="text-white">{userDetails.displayName}</span>
-            <button
-              className="btn btn-ghost text-white hover:text-white hover:bg-blue-600"
+            
+            <Button
+              sx={{ color: "white" }}
               onClick={handleLogOut}
-            ></button>
-
+                  >Log Out</Button>
+                   </div>
+</>
+       ) : (
+         <>
             <Link to="/login">
               <Button sx={{ color: "white" }} className="btn btn-ghost px-6">
                 Login
@@ -176,7 +195,8 @@ const Navbar = () => {
                 Register
               </Button>
             </Link>
-
+   </>
+          )} 
             {/* <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"

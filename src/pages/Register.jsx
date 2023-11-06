@@ -70,13 +70,12 @@ const Register = () => {
 
         <div className="rounded-lg w-full mx-auto max-w-sm p-7 shadow-xl bg-base-100">
           <form
-            noValidate
-            autoComplete="off"
+           
             className="space-y-4 w-full"
             onSubmit={handleRegister}
           >
+            
             <TextField
-              className=""
               label="Full Name"
               variant="outlined"
               color="primary"
@@ -88,7 +87,6 @@ const Register = () => {
             />
 
             <TextField
-              className=""
               label="Profile Photo URL"
               variant="outlined"
               color="primary"
@@ -100,32 +98,28 @@ const Register = () => {
             />
 
             <TextField
-              className=""
               label="Email"
               variant="outlined"
               color="primary"
               type="text"
               placeholder="Enter your email address..."
-              name="photo"
+              name="email"
               required
               fullWidth
             />
 
             <TextField
-              className=""
               label="Password"
               variant="outlined"
               color="primary"
               type="password"
               placeholder="Enter your password..."
-              name="photo"
+              name="password"
               required
               fullWidth
             />
             <div className="mt-8 text-center">
-            <Button variant="contained">
-  Register
-</Button>
+              <Button type="submit" variant="contained">Register</Button>
             </div>
           </form>
 
