@@ -9,9 +9,10 @@ import Root from "./layouts/Root";
 import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
   
 
-const Routes = createBrowserRouter([
+const router = createBrowserRouter([
     {
       path: "/",
       element: <Root></Root>,
@@ -24,11 +25,15 @@ const Routes = createBrowserRouter([
             {
               path: "/login",
               element: <Login></Login>,
-            },
+          },
+          {
+            path: "/register",
+            element: <Register></Register>,
+          },
         ],
     },
   ]);
   
 
 
-export default Routes;
+export default router;

@@ -55,11 +55,10 @@ const Login = () => {
   
   return (
     <div>
-      <div className="hero min-h-screen" style={{ backgroundImage: "url(https://i.ibb.co/kJkzjmr/login1.jpg)" }}>
-        <div className="hero-content flex-col">
-          <div className="text-center">
-            <h1 className="text-5xl text-white font-bold">Login now!</h1>
-            <p className="py-2 my-4 text-white  bg-opacity-80 font-medium bg-black px-4 rounded-xl">
+     
+          <div className="text-center mt-16">
+            <h1 className="text-5xl text-blue-600 font-bold">Login now!</h1>
+            <p className="py-2 my-4 text-black font-medium px-4 rounded-xl">
               Please log in to access your account and explore our services.
             </p>
           </div>
@@ -127,8 +126,6 @@ const Login = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
   );
 };
 
