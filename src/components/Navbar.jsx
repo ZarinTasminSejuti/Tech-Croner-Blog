@@ -25,7 +25,7 @@ const Navbar = () => {
 
   const pages = [
     { key: "home", content: <NavLink to="/">Home</NavLink> },
-    { key: "add-blog", content: <NavLink to="/add-blog">Add Blog</NavLink> },
+    { key: "add-blog", content: <NavLink to="/addBlog">Add Blog</NavLink> },
     { key: "all-blogs", content: <NavLink to="/all-blogs">All Blogs</NavLink> },
     { key: "featured-blogs", content: <NavLink to="/featured-blogs">Featured Blogs</NavLink> },
     { key: "wishlist", content: <NavLink to="/wishlist">Wishlist</NavLink> },
@@ -56,7 +56,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const { user, userDetails, logOut } = useContext(AuthContext);
-
+console.log(userDetails);
   const handleLogOut = () => {
     logOut()
       .then(() => {

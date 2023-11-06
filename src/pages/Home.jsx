@@ -1,4 +1,5 @@
 import Banner from "../components/Banner";
+import RecentBlogs from "../components/RecentBlogs";
 
 
 const Home = () => {
@@ -19,7 +20,8 @@ const Home = () => {
   return (
     <div>
      
-          <Banner post={mainFeaturedPost}></Banner>
+      <Banner post={mainFeaturedPost}></Banner>
+      <RecentBlogs></RecentBlogs>
      
     </div>
   );
