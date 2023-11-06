@@ -155,19 +155,19 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Your Avatar">
               <img
-                src={userDetails}
-                alt={userDetails}
+                src={userDetails.photoURL}
+                alt={userDetails.displayName}
                 className="w-10 rounded "
               />
             </Tooltip>
-            <span className="text-white">{userDetails}</span>
+            <span className="text-white">{userDetails.displayName}</span>
             <button
               className="btn btn-ghost text-white hover:text-white hover:bg-blue-600"
               onClick={handleLogOut}
             ></button>
 
             <Link to="/login">
-              <Button sx={{ color: "white" }} className="btn btn-ghost">
+              <Button sx={{ color: "white" }} className="btn btn-ghost px-6">
                 Login
               </Button>
             </Link>
