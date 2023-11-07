@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import Banner from "../components/Banner";
 import RecentBlogs from "../components/RecentBlogs";
+import { AuthContext } from "../providers/AuthProvider";
 
 
 const Home = () => {
+  const { allBlog } = useContext(AuthContext);
 
     const mainFeaturedPost = {
         title: 'Title of a longer featured blog post',
@@ -21,7 +24,7 @@ const Home = () => {
     <div>
      
       <Banner post={mainFeaturedPost}></Banner>
-      <RecentBlogs></RecentBlogs>
+      <RecentBlogs allBlog={allBlog}></RecentBlogs>
      
     </div>
   );

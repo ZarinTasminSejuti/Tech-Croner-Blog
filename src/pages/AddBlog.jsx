@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../providers/AuthProvider";
 
+
 const AddBlog = () => {
   const navigate = useNavigate();
-  const { userDetails } = useContext(AuthContext);
+  const { userDetails, effect, setEffect } = useContext(AuthContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,18 +18,21 @@ const AddBlog = () => {
     const longDescription = form.longDescription.value;
     const image = form.imageUrl.value;
     const userEmail = userDetails.email;
+    const submitTime = Math.floor(Date.now() / 1000);//Time in seconds
 
     const newBlog = {
       blogTitle,
       shortDescription,
       type,
-
       longDescription,
       image,
       userEmail,
+      submitTime
     };
 
-    fetch("https://localhost:5000/addBlog", {
+
+    //send data to the server
+    fetch("http://localhost:5000/addBlog", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,11 +45,13 @@ const AddBlog = () => {
           swal("Blog Added!", "New Blog added Successful!", "success");
           form.reset();
           navigate("/addBlog");
+          setEffect(!effect);
         }
       })
       .catch(() => {
         swal("Failed!", "Wrong credentials! Please Add again.", "error");
       });
+  
   };
 
   return (

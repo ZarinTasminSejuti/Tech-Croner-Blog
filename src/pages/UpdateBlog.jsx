@@ -3,22 +3,18 @@ import { useLoaderData } from "react-router-dom";
 import swal from "sweetalert";
 
 const UpdateBlog = () => {
-
   const blog = useLoaderData();
 
-
-  const {
-    blogTitle,
-    shortDescription,
-    type,
-
-    longDescription,
-    image,
-    userEmail,
-    _id
-  } = blog;
-//  console.log(_id);
-
+  //   const {
+  //     blogTitle,
+  //     shortDescription,
+  //     type,
+  //     longDescription,
+  //     image,
+  //     userEmail,
+  //     _id
+  //   } = blog;
+  //  console.log(_id);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,47 +27,41 @@ const UpdateBlog = () => {
     const longDescription = form.longDescription.value;
     const image = form.imageUrl.value;
 
-
     const newBlog = {
-        blogTitle,
-        shortDescription,
-        type,
-        longDescription,
-        image,
-        userEmail,
-      };
-console.log(newBlog);
+      blogTitle,
+      shortDescription,
+      type,
+      longDescription,
+      image,
+      // userEmail,
+    };
+    console.log(newBlog);
 
+    fetch(`https://localhost:5000/updateBlog/${_id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newBlog),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          swal("Blog Updated!", "Blog updated Successfully!", "success");
+        }
+      });
+  };
 
-    
-fetch(`https://brand-shop-server-steel.vercel.app/updateProduct/${_id}`, {
-  method: "PUT",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(newBlog),
-})
-  .then((response) => response.json())
-  .then((data) => {
-    if (data.modifiedCount > 0) {
-      swal("Product Updated!", "Product updated Successfully!", "success");
-      
-      
-    }  
-  });
-};
-
-
-
-
-    return (
-      <div className="bg-white w-full">
-        <div className="py-20 w-full lg:w-[1280px] mx-auto">
-          <h3 className="text-5xl text-center mb-24 font-semibold">
-            <span className="text-3xl text-red-600 font-semibold">...</span> Update Your Blog{" "}<span className="text-red-600">{blog.blogTitle}</span>{" "}
-            <span className="text-3xl text-red-600 font-semibold">...</span>
-          </h3>
-          <form onSubmit={handleSubmit} className="p-4 lg:p-0">
+  return (
+    <div className="bg-white w-full">
+      <div className="py-20 w-full lg:w-[1280px] mx-auto">
+        <h3 className="text-5xl text-center mb-24 font-semibold">
+          <span className="text-3xl text-blue-600 font-semibold">...</span>{" "}
+          Update Your Blog{" "}
+          <span className="text-blue-600">{blog.blogTitle}</span>{" "}
+          <span className="text-3xl text-blue-600 font-semibold">...</span>
+        </h3>
+        <form onSubmit={handleSubmit} className="p-4 lg:p-0">
           {/* row one */}
           <div className="md:flex">
             <div className="form-control md:w-1/2 lg:mr-5">
@@ -85,7 +75,7 @@ fetch(`https://brand-shop-server-steel.vercel.app/updateProduct/${_id}`, {
                   type="text"
                   placeholder="Enter blog title..."
                   name="title"
-                  className="input input-bordered bg-white w-full rounded-md"
+                  className="input input-bordeblue bg-white w-full rounded-md"
                   required
                 />
               </label>
@@ -102,7 +92,7 @@ fetch(`https://brand-shop-server-steel.vercel.app/updateProduct/${_id}`, {
                   type="text"
                   placeholder="Enter blog image..."
                   name="imageUrl"
-                  className="input input-bordered bg-white w-full rounded-md"
+                  className="input input-bordeblue bg-white w-full rounded-md"
                   required
                 />
               </label>
@@ -180,19 +170,16 @@ fetch(`https://brand-shop-server-steel.vercel.app/updateProduct/${_id}`, {
 
           {/* update blog button  */}
           <div className="my-10 text-center">
-              <input
-                type="submit"
-                value="Update Blog"
-              
-                className="btn w-1/5 text-white bg-blue-600 border-none hover:text-white hover:bg-black"
-              />
-            </div>
+            <input
+              type="submit"
+              value="Update Blog"
+              className="btn w-1/5 text-white bg-blue-600 border-none hover:text-white hover:bg-black"
+            />
+          </div>
         </form>
-        </div>
-    
       </div>
-    );
-  
+    </div>
+  );
 };
 
 export default UpdateBlog;

@@ -1,11 +1,29 @@
+import PropTypes from 'prop-types';
 
+const RecentBlogs = ({ allBlog }) => {
 
-const RecentBlogs = () => {
+  
+    
     return (
         <div>
-            <p>Recent Blog Posts</p>
+            {allBlog.map((blog) => 
+                <div key={blog.id}>
+                    
+                    <p>{blog.blogTitle}</p>
+                    <p>{blog.shortDescription}</p>
+                    <p>{blog.image}</p>
+                    <p>{ blog.longDescription}</p>
+                    <br />
+                </div>
+              
+      )}
         </div>
     );
 };
 
 export default RecentBlogs;
+
+
+RecentBlogs.propTypes = {
+    allBlog: PropTypes.array,
+  };
