@@ -4,16 +4,19 @@ import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import CommentDetails from "./CommentDetails";
 import PropTypes from 'prop-types';
+import { useState } from "react";
 
-const Comment = ({blogId}) => {
+const Comment = ({ blogId }) => {
+    const [updateComment, setUpdateComment] = useState (false)
+
     const { userDetails } = useContext(AuthContext);
 
   const handleComment = (event) => {
     event.preventDefault();
 
     const form = event.target;
-    const userName = userDetails.name;
-    const userPic = userDetails.photo;
+    const userName = userDetails.displayName;
+    const userPic = userDetails.photoURL;
       const comment = form.comment.value;
     //   const blogID = 
       
@@ -36,7 +39,9 @@ const Comment = ({blogId}) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+          console.log(data);
+          event.target.reset();
+          setUpdateComment (!updateComment)
       });
   };
 
@@ -54,13 +59,13 @@ const Comment = ({blogId}) => {
               className="input input-bordered w-1/2 resize-y"
             ></textarea>
           </label>
-          <Button variant="contained" className="w-20 ml-auto mr-0" endIcon={<SendIcon />}>
+          <Button type="submit" variant="contained" className="w-20 ml-auto mr-0" endIcon={<SendIcon />}>
             Send
           </Button>
         </fieldset>
           </form>
           
-          <CommentDetails></CommentDetails>
+          <CommentDetails blogId = {blogId} updateComment = {updateComment}></CommentDetails>
     </div>
   );
 };

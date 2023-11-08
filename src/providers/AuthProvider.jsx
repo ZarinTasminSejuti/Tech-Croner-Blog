@@ -95,7 +95,7 @@ const [effect, setEffect] = useState(true);
       effect,
       setEffect,
   };
-console.log(allBlog);
+
   return (
     <div>
       <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
