@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "./layouts/Root";
 import AddBlog from "./pages/AddBlog";
+import Allblogs from "./pages/Allblogs";
 import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -36,6 +37,12 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/allBlogs/",
+        element:<Allblogs></Allblogs> ,
+        loader: () => fetch("http://localhost:5000/addBlog"),
+        
+      },
+      {
         path: "/updateBlog/:_id",
         element: (
           <PrivateRoute>
@@ -43,7 +50,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://localhost:5000/${params._id}`),
+          fetch(`http://localhost:5000/${params._id}`),
       },
       {
         path: "/wishlist",
@@ -52,7 +59,7 @@ const router = createBrowserRouter([
            <Wishlist></Wishlist>
           </PrivateRoute>
         ),
-        loader: () => fetch("https://localhost:5000/wishlist"),
+        loader: () => fetch("http://localhost:5000/wishlist"),
        
       },
       

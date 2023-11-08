@@ -8,12 +8,13 @@ const Home = () => {
   const { allBlog } = useContext(AuthContext);
 
     const mainFeaturedPost = {
-        title: 'Title of a longer featured blog post',
+      title: 'Your Tech Adventure',
+      title1: 'Starts Here...',
         description:
-          "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-        image: 'https://source.unsplash.com/random?wallpapers',
-        imageText: 'main image description',
-        linkText: 'Continue reading…',
+          "Dive into the ever-evolving insightful articles of gadgets, software, tech landscape, innovations, and digital trends and embrace the future of technology with confidence.",
+        image: 'https://i.ibb.co/3FgMPXm/blog-banner.jpg',
+        // imageText: 'main image description',
+        // linkText: 'Continue reading…',
       };
       
 

@@ -2,26 +2,26 @@ import PropTypes from 'prop-types';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 
 const Banner = ({post}) => {
     return (
         <div>
             <Paper
-                className='h-[600px]'
+                className='h-[600px] bg-fixed'
       sx={{
         position: 'relative',
         backgroundColor: 'grey.800',
         color: '#fff',
-        mb: 4,
+        mb: 10,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundImage: `url(${post.image})`,
       }}
     >
-      {/* Increase the priority of the hero background image */}
+      {/* hero background image */}
       {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
       <Box
         sx={{
@@ -38,19 +38,23 @@ const Banner = ({post}) => {
           <Box
             sx={{
               position: 'relative',
-              p: { xs: 3, md: 6 },
-              pr: { md: 0 },
+              p: { xs: 3, md: 7 },
+                  pr: { md: 0 },
+                  mt: { md: 5 },
             }}
           >
-            <Typography component="h1" variant="h3" color="inherit" gutterBottom>
+            <Typography component="h1" variant="h3" color="deepskyblue" gutterBottom>
               {post.title}
+                </Typography>
+                <Typography component="h1" variant="h3" color="inherit" gutterBottom>
+              {post.title1}
             </Typography>
-            <Typography variant="h5" color="inherit" paragraph>
+            <Typography variant="h6" color="white" paragraph className='text-justify'>
               {post.description}
             </Typography>
-            <Link variant="subtitle1" href="#">
+            {/* <Link variant="subtitle1" href="#">
               {post.linkText}
-            </Link>
+            </Link> */}
           </Box>
         </Grid>
       </Grid>
@@ -65,9 +69,9 @@ Banner.propTypes = {
     post: PropTypes.shape({
       description: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
-      imageText: PropTypes.string.isRequired,
       linkText: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
+      title1: PropTypes.string.isRequired,
     }).isRequired,
 };
 export default Banner;
