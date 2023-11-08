@@ -22,7 +22,7 @@ const Banner = ({post}) => {
       }}
     >
       {/* hero background image */}
-      {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
+      {<img style={{ display: 'none' }} src={post.image} alt="this is banner" />}
       <Box
         sx={{
           position: 'absolute',

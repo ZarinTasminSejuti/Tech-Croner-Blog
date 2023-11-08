@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "./layouts/Root";
 import AddBlog from "./pages/AddBlog";
 import Allblogs from "./pages/Allblogs";
+import BlogDetails from "./pages/BlogDetails";
 import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -43,6 +44,16 @@ const router = createBrowserRouter([
         
       },
       {
+        path: "/BlogDetails/:_id",
+        element: (
+          <PrivateRoute>
+           <BlogDetails></BlogDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => fetch(`http://localhost:5000/BlogDetails/${params._id}`),
+       
+      },
+      {
         path: "/updateBlog/:_id",
         element: (
           <PrivateRoute>
@@ -62,6 +73,7 @@ const router = createBrowserRouter([
         loader: () => fetch("http://localhost:5000/wishlist"),
        
       },
+
       
     ],
   },
