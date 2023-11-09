@@ -56,6 +56,7 @@ const AddBlog = () => {
 
   return (
     <div className="bg-white w-full ">
+      <div className="p-7 w-full bg-cyan-100"><p className="ml-5 font-bold text-2xl">Add Blogs</p></div>
       <div className="py-20 w-full lg:w-[1280px] mx-auto">
         <h3 className="text-3xl lg:text-5xl text-center mb-12 lg:mb-24 font-semibold">
           <span className="text-3xl text-blue-600 font-semibold"></span> Add New
@@ -115,19 +116,18 @@ const AddBlog = () => {
                   <option defaultValue="type" disabled>
                     Select a Category type...
                   </option>
-                  <option value="Coding">Programming and Coding</option>
-                  <option value="Web">Web Development</option>
-                  <option value="Mobile">Mobile App Development</option>
+                  <option value="Programming and Coding">Programming and Coding</option>
+                  <option value="Web Development">Web Development</option>
+                  <option value="Mobile App Development">Mobile App Development</option>
                   <option value="Cybersecurity">Cybersecurity</option>
-                  <option value="Gadgets">Gadgets and Reviews</option>
-                  <option value="SoftwareTools">Software and Tools</option>
-                  <option value="TechNews">Tech News and Trends</option>
-                  <option value="Hacking">Ethical Hacking</option>
-
-                  <option value="AI">Machine Learning and AI</option>
-                  <option value="Cloud">Cloud Computing</option>
-                  <option value="Hardware">Hardware and DIY Projects</option>
-                  <option value="Analysis">Tech Industry Analysis</option>
+                  <option value="Gadgets and Reviews">Gadgets and Reviews</option>
+                  <option value="Software and Tools">Software and Tools</option>
+                  <option value="Tech News and Trends">Tech News and Trends</option>
+                  <option value="Ethical Hacking">Ethical Hacking</option>
+                  <option value="Machine Learning and AI">Machine Learning and AI</option>
+                  <option value="Cloud Computing">Cloud Computing</option>
+                  <option value="Hardware and DIY Projects">Hardware and DIY Projects</option>
+                  <option value="Tech Industry Analysis">Tech Industry Analysis</option>
                 </select>
               </label>
             </div>

@@ -49,8 +49,8 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div className="text-center mt-16">
+    <div className="my-20 min-h-screen">
+      <div className="text-center">
         <h1 className="text-5xl text-blue-600 font-bold">Login now!</h1>
         <p className="py-2 my-4 text-black font-medium px-4 rounded-xl">
           Please log in to access your account and explore our services.
@@ -85,7 +85,7 @@ const Login = () => {
 
           {/* login button */}
           <div className=" text-center">
-            <Button type="submit" variant="contained">Login</Button>
+            <Button className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:bg-gradient-to-l hover:from-blue-600 hover:to-cyan-500" type="submit" variant="contained">Login</Button>
           </div>
         </form>
 

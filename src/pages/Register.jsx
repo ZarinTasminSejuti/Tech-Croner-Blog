@@ -60,7 +60,7 @@ const Register = () => {
 
   return (
     <div>
-      <Container className="">
+      <Container className="my-20 min-h-screen">
         <div className="text-center">
           <h1 className="text-4xl mt-16 text-blue-600 font-bold">
             Create a new account
@@ -119,7 +119,7 @@ const Register = () => {
               fullWidth
             />
             <div className="mt-8 text-center">
-              <Button type="submit" variant="contained">Register</Button>
+              <Button className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:bg-gradient-to-l hover:from-blue-600 hover:to-cyan-500" type="submit" variant="contained">Register</Button>
             </div>
           </form>
 

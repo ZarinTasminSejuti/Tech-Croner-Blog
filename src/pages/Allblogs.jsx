@@ -1,13 +1,16 @@
 import { Link, useLoaderData } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
-import { useState } from "react";
+import 'react-photo-view/dist/react-photo-view.css';
+
+// import { useState } from "react";
+import { FaEdit, FaHeart } from "react-icons/fa";
 import swal from "sweetalert";
 
 const Allblogs = () => {
   // const [search, setSearch] = useState([]);
-
 
   const blogCollection = useLoaderData();
 
@@ -59,23 +62,23 @@ const Allblogs = () => {
   //   (singleList) => singleList._id === _id
   // );
 
-  //     const blogTitle = wishlistDetails[0].blogTitle;
-  //     const type = wishlistDetails[0].type;
-  //     const shortDescription = wishlistDetails[0].shortDescription;
-  //     const image = wishlistDetails[0].image;
-  // const userEmail = wishlistDetails[0].userEmail;
+  const blogTitle = blogCollection[0].blogTitle;
+  const type = blogCollection[0].type;
+  const shortDescription = blogCollection[0].shortDescription;
+  const image = blogCollection[0].image;
+  const userEmail = blogCollection[0].userEmail;
 
   const newWishlist = {
     blogTitle,
     type,
     shortDescription,
     image,
-    userEmail }
+    userEmail,
+  };
 
   //wishlist post method
   const handleAddWishlist = () => {
     fetch("http://localhost:5000/wishlist", {
-
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -91,19 +94,18 @@ const Allblogs = () => {
             "New Blog added in Wishlist Successfully!",
             "success"
           );
-
         }
       });
   };
 
   return (
-    <div>
+    <div className="">
+      <div className="p-7 w-full bg-cyan-100"><p className="ml-5 font-bold text-2xl">All Blogs</p></div>
       <div className="w-full lg:w-[1280px] my-20 mx-auto ">
         <h2 className="text-4xl text-blue-600 text-center p-3 lg:p-0 font-semibold mb-10">
           Explore All Blogs
         </h2>
 
-        
         {/* search field */}
         <div className="bg-cyan-100 p-3 my-5 rounded-md">
           <Search>
@@ -117,8 +119,7 @@ const Allblogs = () => {
           </Search>
         </div>
 
-
-  {/* All Blogs field */}
+        {/* All Blogs field */}
         <div className="space-y-4">
           {blogCollection.map((blogElement) => (
             <div
@@ -127,6 +128,8 @@ const Allblogs = () => {
             >
               <div className="flex flex-col lg:flex-row items-center ">
                 <div className="w-full lg:w-1/3">
+                <PhotoProvider>
+      <PhotoView>
                   <img
                     src={blogElement.image}
                     alt=""
@@ -134,6 +137,9 @@ const Allblogs = () => {
                     style={{ width: "420px", height: "270px" }}
                     data-aos="zoom-out-right"
                   />
+                        </PhotoView>
+    </PhotoProvider>
+
                 </div>
 
                 <div
@@ -168,18 +174,35 @@ const Allblogs = () => {
 
                   <div className="card-actions w-full justify-between items-center">
                     <div className="grid grid-cols-2 gap-3 ml-1">
+                      {/* view details button */}
                       <Link to={`/BlogDetails/${blogElement._id}`}>
-                        <button className="col-span-1 btn text-white bg-blue-600 border-none hover:text-white hover:bg-black w-full">
+                        <button className="col-span-1 btn text-white border-none hover:text-white hover:bg-black w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:bg-gradient-to-l hover:from-blue-600 hover:to-cyan-500">
                           View Details
                         </button>
                       </Link>
 
-            
-                     
-                        <button    onClick={handleAddWishlist} className="col-span-1 btn text-white bg-blue-600 border-none hover:text-white hover:bg-black w-full">
-                          Wishlist
+                      {/* Edit button */}
+                      <Link to={`/updateBlog/${blogElement._id}`}>
+                        <button className="btn text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:bg-gradient-to-l hover:from-blue-600 hover:to-cyan-500 border-none hover:text-white text-xl hover:bg-black w-1/2">
+                          <FaEdit></FaEdit>
                         </button>
-         
+                      </Link>
+
+                      {/* wishlist button */}
+
+                      <FaHeart
+                        onClick={handleAddWishlist}
+                        className="text-cyan-500  cursor-pointer text-3xl hover:text-blue-600"
+                      ></FaHeart>
+
+                      {/* <div className="group">
+  <button className="bg-blue-500 text-white hover:text-gray-300 hover:bg-blue-700 py-2 px-4 rounded relative">
+    Hover Me
+  </button>
+  <span className="absolute hidden text-gray-300 -left-1/2 transform group-hover:block">
+    Additional Text
+  </span>
+</div> */}
                     </div>
                   </div>
                 </div>

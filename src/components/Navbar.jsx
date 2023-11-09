@@ -27,7 +27,7 @@ const Navbar = () => {
     { key: "home", content: <NavLink to="/">Home</NavLink> },
     { key: "add-blog", content: <NavLink to="/addBlog">Add Blog</NavLink> },
     { key: "all-blogs", content: <NavLink to="/allBlogs">All Blogs</NavLink> },
-    { key: "featured-blogs", content: <NavLink to="/featured-blogs">Featured Blogs</NavLink> },
+    { key: "featured-blogs", content: <NavLink to="/featuredBlogs">Featured Blogs</NavLink> },
     { key: "wishlist", content: <NavLink to="/wishlist">Wishlist</NavLink> },
   ];
   
