@@ -5,27 +5,26 @@ import swal from "sweetalert";
 const UpdateBlog = () => {
   const blog = useLoaderData();
 
-  //   const {
-  //     blogTitle,
-  //     shortDescription,
-  //     type,
-  //     longDescription,
-  //     image,
-  //     userEmail,
-  //     _id
-  //   } = blog;
-  //  console.log(_id);
+    const {
+      blogTitle,
+      shortDescription,
+      type,
+      longDescription,
+      image,
+      userEmail,
+      _id
+    } = blog;
+   console.log(_id);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event.target.productName.value);
 
     const form = event.target;
-    const blogTitle = form.title.value;
+    const blogTitle = form.blogTitle.value;
     const shortDescription = form.shortDescription.value;
     const type = form.type.value;
     const longDescription = form.longDescription.value;
-    const image = form.imageUrl.value;
+    const image = form.image.value;
 
     const newBlog = {
       blogTitle,
@@ -75,7 +74,7 @@ const UpdateBlog = () => {
                   type="text"
                   placeholder="Enter blog title..."
                   name="title"
-                  className="input input-bordeblue bg-white w-full rounded-md"
+                  className="input input-bordered bg-white w-full rounded-md"
                   required
                 />
               </label>
@@ -91,8 +90,8 @@ const UpdateBlog = () => {
                 <input
                   type="text"
                   placeholder="Enter blog image..."
-                  name="imageUrl"
-                  className="input input-bordeblue bg-white w-full rounded-md"
+                  name="image"
+                  className="input input-bordered bg-white w-full rounded-md"
                   required
                 />
               </label>

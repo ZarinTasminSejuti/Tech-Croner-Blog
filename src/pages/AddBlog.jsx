@@ -16,7 +16,7 @@ const AddBlog = () => {
     const shortDescription = form.shortDescription.value;
     const type = form.type.value;
     const longDescription = form.longDescription.value;
-    const image = form.imageUrl.value;
+    const image = form.image.value;
     const userEmail = userDetails.email;
     const submitTime = Math.floor(Date.now() / 1000);//Time in seconds
 
@@ -91,7 +91,7 @@ const AddBlog = () => {
                 <input
                   type="text"
                   placeholder="Enter blog image..."
-                  name="imageUrl"
+                  name="image"
                   className="input input-bordered bg-white w-full rounded-md"
                   required
                 />

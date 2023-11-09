@@ -69,7 +69,6 @@ Banner.propTypes = {
     post: PropTypes.shape({
       description: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
-      linkText: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       title1: PropTypes.string.isRequired,
     }).isRequired,

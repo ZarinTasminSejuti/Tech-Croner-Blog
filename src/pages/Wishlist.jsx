@@ -1,68 +1,68 @@
 import { Button } from "@mui/material";
 import { useContext } from "react";
-import {  useLoaderData } from "react-router-dom";
-// import swal from "sweetalert";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { AuthContext } from "../providers/AuthProvider";
 
 
 const Wishlist = () => {
-  const myCartCollection = useLoaderData();
-//   const navigate = useNavigate();
+  const myWishlistCollection = useLoaderData();
+  console.log(myWishlistCollection);
+  const navigate = useNavigate();
 
   const { userDetails } = useContext(AuthContext);
 
-  const carCard = myCartCollection.filter(
-    (car) => car.userEmail === userDetails.email
+  const wishlist = myWishlistCollection.filter(
+    (wish) => wish.userEmail === userDetails.email
   );
 
 
   // Function to handle item deletion
-//   const handleDelete = (itemId) => {
+const handleRemove = (listId) => {
    
 
-//     fetch(`https://brand-shop-server-steel.vercel.app/myCart/${itemId} `, {
-//             method: "DELETE",
-//             headers: {
-//               "content-Type": "application/json",
-//             },
-//           })
-//             .then((response) => response.json())
-//             .then((data) => {
-//               console.log(data);
-//               if (data.deletedCount > 0){
-//                 swal("Deleted!", "Your car has been deleted.", "success");
-//                 navigate("/myCart");
-//               }
-//             });
-//           // window.location.reload();
-//         };
+    fetch(`http://localhost:5000/wishlist/${listId}`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+              if (data.deletedCount > 0){
+                swal("Removed!", "Your blog has been deleted.", "success");
+                navigate("/wishlist");
+              }
+            });
+        };
 
   
 
   return (
     <div>
-      <div className=" bg-green-100 p-5 w-full lg:w-[1280px] my-20 mx-auto">
+      <div className=" bg-blue-100 p-5 w-full lg:w-[1280px] my-20 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 ">
-          {carCard.map((SingleCarElement) => (
+          {wishlist.map((WishlistElement) => (
 
 
             <div
               className="card bg-white shadow-xl p-5"
-              key={SingleCarElement._id}
+              key={WishlistElement._id}
             >
                <div className="text-right mb-4">
                   {" "}
                
                   <span className="text-xs text-white bg-green-600 py-1 px-2 rounded-full">
-                    In your cart
+                    In your Wishlist
                   </span>
               </div>
               
        
               <div className="text-center mx-auto mt-3">
                 <div className="w-full">
-                <img src={SingleCarElement.image} alt="" className="rounded-xl"
+                <img src={WishlistElement.image} alt="" className="rounded-xl"
               style={{ width: '300px', height: '200px' }}/>
               </div>
            
@@ -70,14 +70,19 @@ const Wishlist = () => {
              
             
                
-                <h2 className=" font-bold text-2xl text-center my-7">{SingleCarElement.productName}</h2>
+                <h2 className=" font-bold text-2xl text-center my-7">{WishlistElement.title}</h2>
               </div>
 
                 
                   <div className="w-full mb-2">
               
-                    {/* //   onClick={() => handleDelete(SingleCarElement._id)} */}
-                    <Button variant="outlined" startIcon={<DeleteIcon />}>
+                  <Link to={`/BlogDetails/${blogElement._id}`}>
+                        <button className="col-span-1 btn text-white bg-blue-600 border-none hover:text-white hover:bg-black w-full">
+                          View Details
+                        </button>
+                </Link> 
+                
+                    <Button onClick={() => handleRemove(WishlistElement._id)}  variant="outlined" startIcon={<DeleteIcon />}>
                     Remove
                   </Button>
                   </div>

@@ -9,7 +9,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UpdateBlog from "./pages/UpdateBlog";
 import Wishlist from "./pages/Wishlist";
-import PrivateRoute from "./providers/PrivateRoute";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/${params._id}`),
+          fetch(`http://localhost:5000/updateBlog/${params._id}`),
       },
       {
         path: "/wishlist",
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
            <Wishlist></Wishlist>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/wishlist"),
+        loader: ({ params }) => fetch(`http://localhost:5000/wishlist/${params._id}`),
        
       },
       

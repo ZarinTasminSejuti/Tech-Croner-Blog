@@ -10,6 +10,8 @@ const RecentBlogs = ({ allBlog }) => {
     return (
         <div>
             {slicedBlog.map((blog) => 
+
+         
                 <div key={blog.id}>
                     
                     <p>{blog.blogTitle}</p>
@@ -19,7 +21,7 @@ const RecentBlogs = ({ allBlog }) => {
                     <br />
             
                 </div>
-              
+                 
       )}
         </div>
     );
