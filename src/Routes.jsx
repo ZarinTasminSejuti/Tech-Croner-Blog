@@ -12,7 +12,6 @@ import UpdateBlog from "./pages/UpdateBlog";
 import Wishlist from "./pages/Wishlist";
 import PrivateRoute from "./PrivateRoute";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element:<Login></Login>,
+        element: <Login></Login>,
       },
       {
         path: "/register",
@@ -34,32 +33,31 @@ const router = createBrowserRouter([
       {
         path: "/addBlog",
         element: (
-         <PrivateRoute>
-           <AddBlog></AddBlog>
-           </PrivateRoute>
+          <PrivateRoute>
+            <AddBlog></AddBlog>
+          </PrivateRoute>
         ),
       },
       {
         path: "/allBlogs/",
-        element:<Allblogs></Allblogs> ,
-        loader: () => fetch("http://localhost:5000/addBlog"),
-        
+        element: <Allblogs></Allblogs>,
+        loader: () => fetch("http://localhost:5000/allBlog"),
       },
       {
         path: "/BlogDetails/:_id",
         element: (
           <PrivateRoute>
-           <BlogDetails></BlogDetails>
+            <BlogDetails></BlogDetails>
           </PrivateRoute>
         ),
-        loader: ({ params }) => fetch(`http://localhost:5000/BlogDetails/${params._id}`),
-       
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/BlogDetails/${params._id}`),
       },
       {
         path: "/updateBlog/:_id",
         element: (
           <PrivateRoute>
-          <UpdateBlog></UpdateBlog>
+            <UpdateBlog></UpdateBlog>
           </PrivateRoute>
         ),
         loader: ({ params }) =>
@@ -68,24 +66,17 @@ const router = createBrowserRouter([
       {
         path: "/wishlist",
         element: (
-         <PrivateRoute>
-           <Wishlist></Wishlist>
-           </PrivateRoute>
+          <PrivateRoute>
+            <Wishlist></Wishlist>
+          </PrivateRoute>
         ),
         loader: () => fetch("http://localhost:5000/wishlist"),
-       
       },
       {
         path: "/featuredBlogs",
-        element: (
-
-           <FeaturedBlogs></FeaturedBlogs>
-          
-        ),
+        element: <FeaturedBlogs></FeaturedBlogs>,
+        loader: () => fetch("http://localhost:5000/allBlog"),
       },
-      
-
-      
     ],
   },
 ]);

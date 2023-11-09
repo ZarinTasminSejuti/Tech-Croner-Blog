@@ -52,12 +52,7 @@ const Wishlist = () => {
               className="card bg-white shadow-xl p-5"
               key={WishlistElement._id}
             >
-              <div className="text-right mb-4">
-                {" "}
-                <span className="text-xs text-white bg-green-600 py-1 px-2 rounded-full">
-                  In your Wishlist
-                </span>
-              </div>
+             
 
               <div className="text-center mx-auto mt-3">
                 <div className="w-full">

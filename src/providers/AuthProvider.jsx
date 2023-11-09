@@ -24,7 +24,7 @@ const AuthProvider = ({ children }) => {
   const [allBlog, setAllBlog] = useState([]);
 const [effect, setEffect] = useState(true);
     
-  const allBlogUrl = "http://localhost:5000/addBlog";
+  const allBlogUrl = "http://localhost:5000/allBlog";
 
   useEffect(() => {
     const fetchData = async () => {

@@ -67,11 +67,12 @@ const Navbar = () => {
         console.error(error);
       });
   };
-
+  
   return (
+    <div className="bg-gradient-to-r from-blue-600 to-cyan-500 ...">
     <AppBar
       position="static"
-      className="bg-gradient-to-r from-blue-600 to-cyan-500 ..."
+      className="px-24"
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -222,7 +223,8 @@ const Navbar = () => {
           </Box>
         </Toolbar>
       </Container>
-    </AppBar>
+      </AppBar>
+      </div>
   );
 };
 

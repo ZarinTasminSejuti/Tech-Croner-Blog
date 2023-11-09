@@ -12,9 +12,7 @@ const Home = () => {
       title1: 'Starts Here...',
         description:
           "Dive into the ever-evolving insightful articles of gadgets, software, tech landscape, innovations, and digital trends and embrace the future of technology with confidence.",
-        image: 'https://i.ibb.co/3FgMPXm/blog-banner.jpg',
-        // imageText: 'main image description',
-        // linkText: 'Continue reading…',
+      
       };
       
 
@@ -22,10 +20,12 @@ const Home = () => {
 
 
   return (
-    <div>
+    <div className="w-full mx-auto">
      
       <Banner post={mainFeaturedPost}></Banner>
       <RecentBlogs allBlog={allBlog}></RecentBlogs>
+    
+      
      
     </div>
   );

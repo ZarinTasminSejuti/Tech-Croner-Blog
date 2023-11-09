@@ -7,9 +7,9 @@ import Box from '@mui/material/Box';
 
 const Banner = ({post}) => {
     return (
-        <div>
+        <div className='bg-red-500'>
             <Paper
-                className='h-[600px] bg-fixed'
+                className='h-[500px] bg-fixed'
       sx={{
         position: 'relative',
         backgroundColor: 'grey.800',
@@ -18,11 +18,11 @@ const Banner = ({post}) => {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundImage: `url(${post.image})`,
+        backgroundImage: `url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")`,
       }}
     >
       {/* hero background image */}
-      {<img style={{ display: 'none' }} src={post.image} alt="this is banner" />}
+      {<img style={{ display: 'none' }} src={"https://images.unsplash.com/photo-1568952433726-3896e3881c65?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} alt="this is banner" />}
       <Box
         sx={{
           position: 'absolute',
@@ -30,7 +30,7 @@ const Banner = ({post}) => {
           bottom: 0,
           right: 0,
           left: 0,
-          backgroundColor: 'rgba(0,0,0,.3)',
+          backgroundColor: 'rgba(0,0,0,.4)',
         }}
       />
       <Grid container>
@@ -43,7 +43,7 @@ const Banner = ({post}) => {
                   mt: { md: 5 },
             }}
           >
-            <Typography component="h1" variant="h3" color="deepskyblue" gutterBottom>
+            <Typography component="h1" variant="h3" className='text-blue-600' gutterBottom>
               {post.title}
                 </Typography>
                 <Typography component="h1" variant="h3" color="inherit" gutterBottom>
