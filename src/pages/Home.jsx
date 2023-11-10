@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import Banner from "../components/Banner";
+import Newsletter from "../components/Newsletter";
 import RecentBlogs from "../components/RecentBlogs";
+import TechNews from "../components/TechNews";
 import { AuthContext } from "../providers/AuthProvider";
 
 
@@ -24,7 +26,8 @@ const Home = () => {
      
       <Banner post={mainFeaturedPost}></Banner>
       <RecentBlogs allBlog={allBlog}></RecentBlogs>
-    
+      <TechNews></TechNews>
+    <Newsletter></Newsletter>
       
      
     </div>

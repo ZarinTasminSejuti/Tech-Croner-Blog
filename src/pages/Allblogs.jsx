@@ -6,7 +6,7 @@ import InputBase from "@mui/material/InputBase";
 import "react-photo-view/dist/react-photo-view.css";
 
 // import { useState } from "react";
-import { FaEdit, FaHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import swal from "sweetalert";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
@@ -16,7 +16,6 @@ const Allblogs = () => {
 
   const blogCollection = useLoaderData();
   const { userDetails } = useContext(AuthContext);
- 
 
   // search field with material ui
 
@@ -60,13 +59,6 @@ const Allblogs = () => {
     },
   }));
 
-  // const { _id } = useParams();
-  //  console.log(_id);
-  // const wishlistDetails = blogCollection.filter(
-  //   (singleList) => singleList._id === _id
-  // );
-
-  
 
   //wishlist post method
   const handleAddWishlist = (blogElement) => {
@@ -75,7 +67,7 @@ const Allblogs = () => {
     const shortDescription = blogElement.shortDescription;
     const image = blogElement.image;
     const userEmail = userDetails.email;
-  
+
     const newWishlist = {
       blogTitle,
       type,
@@ -105,17 +97,15 @@ const Allblogs = () => {
   };
 
   return (
-    <div className="">
-      <div className="p-7 w-full bg-cyan-100">
-        <p className="ml-5 font-bold text-2xl">All Blogs</p>
+    <div className="px-24">
+      <div className="py-10 text-black ">
+        <p className="font-bold text-3xl">All Blogs</p>
       </div>
-      <div className="lg:w-[1280px] my-20 mx-auto ">
-        <h2 className="text-4xl text-blue-600 text-center p-3 lg:p-0 font-semibold mb-10">
-          Explore All Blogs
-        </h2>
+      <div className="">
+       
 
         {/* search field */}
-        <div className="bg-cyan-100 w-full p-3 my-5 rounded-md">
+        <div className="bg-gray-100 w-1/2 my-10 rounded-md mx-auto">
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -129,93 +119,46 @@ const Allblogs = () => {
 
         {/* All Blogs field */}
 
-        <div className=" space-y-4">
 
-
-
-          {blogCollection.map((blogElement) => (
-            <div
-              className="  rounded-lg shadow-md"
-              key={blogElement._id}
-            >
-              <div className="flex flex-col lg:flex-row items-center ">
-                <div className="w-full lg:w-1/3">
-                  <PhotoProvider>
-                    <PhotoView>
-                      <img
-                        src={blogElement.image}
-                        alt=""
-                        className="p-6 rounded-[32px]"
-                        style={{ width: "420px", height: "270px" }}
-                        data-aos="zoom-out-right"
-                      />
-                    </PhotoView>
+        <div className="grid grid-cols-3 gap-10">
+          {blogCollection.map((blog) => (
+            <div key={blog.id} className="mb-10 ">
+            <PhotoProvider>
+                    <PhotoView src={blog.image}>
+                <img
+                  src={blog.image}
+                  alt="blog"
+                  className="w-full h-[250px]"
+                />
+              </PhotoView>
                   </PhotoProvider>
+              <div className="h-[250px] flex flex-col justify-between py-2">
+                <div>
+                  <h2 className="card-title my-2 text-black">
+                    {blog.blogTitle}
+                  </h2>
+                  <p className="text-gray-400 text-xs">Category: {blog.type}</p>
+                  <p className="text-gray-500 pt-2 text-justify break-words ...">
+                    {blog.shortDescription}
+                  </p>
                 </div>
+               
+                <div className="flex gap-5">
+                <Link to={`/BlogDetails/${blog._id}`} className="">
+                  <p className="font-bold text-sm text-blue-500 hover:underline hover:decoration-solid hover:cursor-pointer">
+                    View Details
+                  </p>
+                </Link>
+                <Link to={`/updateBlog/${blog._id}`}>
+                  <p className="font-bold text-sm text-blue-500 hover:underline hover:decoration-solid hover:cursor-pointer">
+                    Edit
+                  </p>
+                </Link>
 
-                <div
-                  data-aos="zoom-in"
-                  className="card-body bg-green-100 lg:w-2/3 md:relative"
-                >
-                  <div className="my-3 flex justify-between bg-red-400">
-                    <div className="bg-pink-400 space-y-3 w-11/12">
-                    <h2 className="text-2xl font-bold">
-                      <span className=" text-blue-700">
-                        Blog Title:</span>{" "}{blogElement.blogTitle}
-                    </h2>
-
-                    <p>
-                      <span className="text-blue-700  font-medium">
-                        Short Description:
-                      </span>{" "}
-                      {blogElement.shortDescription}
-                    </p>
-                    <h2>
-                      <span className="text-blue-700 font-medium">
-                        Category:
-                      </span>{" "}
-                      {blogElement.type}
-                      </h2>
-                      {/* view details button */}
-                    <Link to={`/BlogDetails/${blogElement._id}`}>
-                        <button className="col-span-1 btn mt-10 text-white border-none hover:text-white hover:bg-black bg-gradient-to-r from-blue-600 to-cyan-500 hover:bg-gradient-to-l hover:from-blue-600 hover:to-cyan-500">
-                          View Details
-                        </button>
-                    </Link>
-                    </div>
-
-                    
-                    <div>
-                      
-                    
-
-
-
-
-                    <div className="card-actions w-full bg-yellow-300 justify-between items-center">
-                    <div className="flex- flex-col">
-                     
-
-                      {/* Edit button */}
-                      <Link to={`/updateBlog/${blogElement._id}`}>
-                        <button className="btn w-full text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:bg-gradient-to-l hover:from-blue-600 hover:to-cyan-500 border-none hover:text-white text-xl hover:bg-black">
-                          <FaEdit></FaEdit>
-                        </button>
-                      </Link>
-
-                      {/* wishlist button */}
-
-                      <FaHeart
-                        onClick={() => handleAddWishlist(blogElement)}
-                        className="text-cyan-500  cursor-pointer text-3xl hover:text-blue-600"
-                      ></FaHeart>
-
-                  
-                    </div>
-                  </div>
-</div>
-                     
-                  </div>
+                <FaHeart
+                  onClick={() => handleAddWishlist(blog)}
+                  className="text-blue-500  cursor-pointer text-xl hover:text-cyan-600"
+                ></FaHeart>
 
                 </div>
               </div>

@@ -18,8 +18,6 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 
 
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-
 const Navbar = () => {
 
 
@@ -35,22 +33,17 @@ const Navbar = () => {
 
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  //   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  //   const handleOpenUserMenu = (event) => {
-  //     setAnchorElUser(event.currentTarget);
-  //   };
+ 
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  //   const handleCloseUserMenu = () => {
-  //     setAnchorElUser(null);
-  //   };
 
   //navigate after logout
   const navigate = useNavigate();
@@ -69,10 +62,10 @@ const Navbar = () => {
   };
   
   return (
-    <div className="bg-gradient-to-r from-blue-600 to-cyan-500 ...">
+    <div className="">
     <AppBar
       position="static"
-      className="px-24"
+        className="px-24 bg-gradient-to-r from-blue-600 to-cyan-500 "
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -149,7 +142,7 @@ const Navbar = () => {
               textDecoration: "none",
             }}
           >
-            LOGO
+            Tech Corner
           </Typography>
 
           {/* responsive ends */}

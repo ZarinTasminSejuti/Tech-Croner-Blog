@@ -16,9 +16,6 @@ const Footer = () => {
     };
 
     //send data to the server
-    //change this
-    //change
-    //change
     fetch("http://localhost:5000/suggestion", {
       method: "POST",
       headers: {
@@ -31,7 +28,7 @@ const Footer = () => {
         if (data.insertedId) {
           swal("Suggestion Received!", "Thanks for the suggestion!", "success");
           form.reset();
-          // navigate("/");
+          //navigate("/");
         }
       })
       .catch(() => {
@@ -104,7 +101,7 @@ const Footer = () => {
               <input
                 type="text"
                 name="name"
-                placeholder="full Name"
+                placeholder="Full name"
                 className="input input-bordered w-full pr-16"
               />
             </div>

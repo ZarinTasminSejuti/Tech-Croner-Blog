@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 
 const Banner = ({post}) => {
     return (
-        <div className='bg-red-500'>
+        <div className=''>
             <Paper
                 className='h-[500px] bg-fixed'
       sx={{
@@ -43,7 +43,7 @@ const Banner = ({post}) => {
                   mt: { md: 5 },
             }}
           >
-            <Typography component="h1" variant="h3" className='text-blue-600' gutterBottom>
+            <Typography component="h1" variant="h3" className='text-cyan-300' gutterBottom>
               {post.title}
                 </Typography>
                 <Typography component="h1" variant="h3" color="inherit" gutterBottom>
@@ -68,7 +68,6 @@ const Banner = ({post}) => {
 Banner.propTypes = {
     post: PropTypes.shape({
       description: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       title1: PropTypes.string.isRequired,
     }).isRequired,
