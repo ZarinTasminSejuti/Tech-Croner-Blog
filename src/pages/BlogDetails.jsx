@@ -12,14 +12,14 @@ const BlogDetails = () => {
     //const { userDetails } = useContext(AuthContext);
 
     return (
-        <div>
+        <div className="min-h-screen my-24 w-[1280px] mx-auto p-5">
          
                 <div>
                     
-                    <p>{blogSelected.blogTitle}</p>
+                    <p className="font-bold text-2xl">Blog Title: {blogSelected.blogTitle}</p>
                     <p>{blogSelected.shortDescription}</p>
                     <p>{blogSelected.image}</p>
-                    <p>{ blogSelected.longDescription}</p>
+                    <p className="text-justify w-1/2">More Details: { blogSelected.longDescription}</p>
                     <br />
             <Comment blogId = {blogSelected._id}></Comment>
                 </div>

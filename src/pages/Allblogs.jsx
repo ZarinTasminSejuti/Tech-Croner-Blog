@@ -1,63 +1,30 @@
 import { Link, useLoaderData } from "react-router-dom";
-import SearchIcon from "@mui/icons-material/Search";
 import { PhotoProvider, PhotoView } from "react-photo-view";
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
 import "react-photo-view/dist/react-photo-view.css";
 
 // import { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import swal from "sweetalert";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
+
 const Allblogs = () => {
-  // const [search, setSearch] = useState([]);
+  const [searchText, setSearchText] = useState('');
 
   const blogCollection = useLoaderData();
   const { userDetails } = useContext(AuthContext);
 
-  // search field with material ui
+//Search function  
+const handleSearch = (event) => {
+  event.preventDefault();
+  setSearchText (event.target.value);
+  };
 
-  const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-  }));
+const filteredBlogs = blogCollection.filter(blog => 
+  blog.blogTitle.toLowerCase().includes(searchText)
+);
 
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }));
-
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("md")]: {
-        width: "100ch",
-      },
-    },
-  }));
 
 
   //wishlist post method
@@ -96,42 +63,82 @@ const Allblogs = () => {
       });
   };
 
+  //Category or type counts
+  const countByType = blogCollection.reduce((acc, obj) => {
+    const { type } = obj;
+    acc[type] = (acc[type] || 0) + 1;
+    return acc;
+  }, {});
+
+  //Get as object
+  const resultArray = Object.keys(countByType).map((type) => ({
+    type,
+    count: countByType[type],
+  }));
+
+  //All blog count
+  const allBlogCount = resultArray.reduce(
+    (total, item) => total + item.count,
+    0
+  );
+
+
+
+
+
   return (
-    <div className="px-24">
+    <div className="px-24 ">
       <div className="py-10 text-black ">
         <p className="font-bold text-3xl">All Blogs</p>
       </div>
-      <div className="">
-       
-
+      <div className="text-center">
         {/* search field */}
-        <div className="bg-gray-100 w-1/2 my-10 rounded-md mx-auto">
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
+        <div className="my-10 rounded-md mx-auto">
+          <input
+            className="bg-gray-100 w-1/2 px-5 py-2 rounded-full border-gray-400 border-solid border-2"
+             onChange={(e) => {
+              handleSearch(e)
+              }}
               placeholder="Search by blog title…"
-              inputProps={{ "aria-label": "search" }}
             />
-          </Search>
+         
+        </div>
+        <div className="mb-10">
+          <div className="justify-center  flex flex-wrap w-4/5 mx-auto">
+            <button className=" text-sm m-2 rounded-full py-2 px-4 w-fit flex items-center font-light bg-blue-600 text-white">
+              All
+              <span className="bg-cyan-500 text-white  ml-2 rounded-full inline-block w-5 h-5">
+                {allBlogCount}
+              </span>
+            </button>
+
+            {resultArray.map((item, index) => (
+              <button
+                key={index}
+                className="bg-cyan-500 text-white text-sm m-2 rounded-full py-2 px-4 w-fit flex items-center font-light"
+              >
+                {item.type}
+                <span className="bg-gray-100 text-blue-600  ml-2 rounded-full inline-block w-5 h-5">
+                  {item.count}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* All Blogs field */}
-
-
-        <div className="grid grid-cols-3 gap-10">
-          {blogCollection.map((blog) => (
-            <div key={blog.id} className="mb-10 ">
-            <PhotoProvider>
-                    <PhotoView src={blog.image}>
-                <img
-                  src={blog.image}
-                  alt="blog"
-                  className="w-full h-[250px]"
-                />
-              </PhotoView>
-                  </PhotoProvider>
+        <div className="grid grid-cols-3 gap-10 mb-20">
+          {filteredBlogs.map((blog, index) => (
+            <div key={index + 1} className="mb-10 ">
+              <PhotoProvider>
+                <PhotoView src={blog.image}>
+                  <img
+                    src={blog.image}
+                    alt="blog"
+                    className="w-full h-[250px] bg-cover"
+                  />
+                </PhotoView>
+              </PhotoProvider>
               <div className="h-[250px] flex flex-col justify-between py-2">
                 <div>
                   <h2 className="card-title my-2 text-black">
@@ -142,24 +149,23 @@ const Allblogs = () => {
                     {blog.shortDescription}
                   </p>
                 </div>
-               
+
                 <div className="flex gap-5">
-                <Link to={`/BlogDetails/${blog._id}`} className="">
-                  <p className="font-bold text-sm text-blue-500 hover:underline hover:decoration-solid hover:cursor-pointer">
-                    View Details
-                  </p>
-                </Link>
-                <Link to={`/updateBlog/${blog._id}`}>
-                  <p className="font-bold text-sm text-blue-500 hover:underline hover:decoration-solid hover:cursor-pointer">
-                    Edit
-                  </p>
-                </Link>
+                  <Link to={`/BlogDetails/${blog._id}`} className="">
+                    <p className="font-bold text-sm text-blue-500 hover:underline hover:decoration-solid hover:cursor-pointer">
+                      View Details
+                    </p>
+                  </Link>
+                  <Link to={`/updateBlog/${blog._id}`}>
+                    <p className="font-bold text-sm text-blue-500 hover:underline hover:decoration-solid hover:cursor-pointer">
+                      Edit
+                    </p>
+                  </Link>
 
-                <FaHeart
-                  onClick={() => handleAddWishlist(blog)}
-                  className="text-blue-500  cursor-pointer text-xl hover:text-cyan-600"
-                ></FaHeart>
-
+                  <FaHeart
+                    onClick={() => handleAddWishlist(blog)}
+                    className="text-blue-500  cursor-pointer text-xl hover:text-cyan-600"
+                  ></FaHeart>
                 </div>
               </div>
             </div>

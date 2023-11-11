@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { AuthContext } from "../providers/AuthProvider";
 
-
 const AddBlog = () => {
   const navigate = useNavigate();
   const { userDetails, effect, setEffect } = useContext(AuthContext);
@@ -18,7 +17,7 @@ const AddBlog = () => {
     const longDescription = form.longDescription.value;
     const image = form.image.value;
     const userEmail = userDetails.email;
-    const submitTime = Math.floor(Date.now() / 1000);//Time in seconds
+    const submitTime = Math.floor(Date.now() / 1000); //Time in seconds
 
     const newBlog = {
       blogTitle,
@@ -27,9 +26,8 @@ const AddBlog = () => {
       longDescription,
       image,
       userEmail,
-      submitTime
+      submitTime,
     };
-
 
     //send data to the server
     fetch("http://localhost:5000/addBlog", {
@@ -51,17 +49,17 @@ const AddBlog = () => {
       .catch(() => {
         swal("Failed!", "Wrong credentials! Please Add again.", "error");
       });
-  
   };
 
   return (
-    <div className="bg-white w-full ">
-      <div className="p-7 w-full bg-cyan-100"><p className="ml-5 font-bold text-2xl">Add Blogs</p></div>
-      <div className="py-20 w-full lg:w-[1280px] mx-auto">
-        <h3 className="text-3xl lg:text-5xl text-center mb-12 lg:mb-24 font-semibold">
-          <span className="text-3xl text-blue-600 font-semibold"></span> Add New
-          Blog <span className="text-3xl text-blue-600 font-semibold"></span>
-        </h3>
+    <div className="px-24">
+      <div className="py-10 text-black ">
+        <p className="font-bold text-4xl">Add New
+          Blog</p>
+      </div>
+
+      <div className=" w-full lg:w-[1280px] pt-10 pb-20">
+       
         <form onSubmit={handleSubmit} className="p-4 lg:p-0">
           {/* row one */}
           <div className="md:flex">
@@ -116,18 +114,32 @@ const AddBlog = () => {
                   <option defaultValue="type" disabled>
                     Select a Category type...
                   </option>
-                  <option value="Programming and Coding">Programming and Coding</option>
+                  <option value="Programming and Coding">
+                    Programming and Coding
+                  </option>
                   <option value="Web Development">Web Development</option>
-                  <option value="Mobile App Development">Mobile App Development</option>
+                  <option value="Mobile App Development">
+                    Mobile App Development
+                  </option>
                   <option value="Cybersecurity">Cybersecurity</option>
-                  <option value="Gadgets and Reviews">Gadgets and Reviews</option>
+                  <option value="Gadgets and Reviews">
+                    Gadgets and Reviews
+                  </option>
                   <option value="Software and Tools">Software and Tools</option>
-                  <option value="Tech News and Trends">Tech News and Trends</option>
+                  <option value="Tech News and Trends">
+                    Tech News and Trends
+                  </option>
                   <option value="Ethical Hacking">Ethical Hacking</option>
-                  <option value="Machine Learning and AI">Machine Learning and AI</option>
+                  <option value="Machine Learning and AI">
+                    Machine Learning and AI
+                  </option>
                   <option value="Cloud Computing">Cloud Computing</option>
-                  <option value="Hardware and DIY Projects">Hardware and DIY Projects</option>
-                  <option value="Tech Industry Analysis">Tech Industry Analysis</option>
+                  <option value="Hardware and DIY Projects">
+                    Hardware and DIY Projects
+                  </option>
+                  <option value="Tech Industry Analysis">
+                    Tech Industry Analysis
+                  </option>
                 </select>
               </label>
             </div>

@@ -29,64 +29,49 @@ const RecentBlogs = ({ allBlog }) => {
       <div className="p-5 text-center pb-24">
         <h1 className="text-4xl font-bold text-blue-600">Recent Blogs</h1>
       </div>
-      {/* <motion.div
-        className="grid grid-cols-3 gap-7"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {slicedBlog.map((blog) => (
-          <motion.div
-            key={blog.id}
-            className="bg-slate-500 h-[500px]"
-            variants={cardVariants}
-          >
-            <figure>
-              <img className="w-full h-60" src={blog.image} alt="blog!" />
-            </figure>
-            <motion.div className="pt-7 h-[260]" variants={cardVariants}>
-              <div>
-                <h2 className="font-semibold text-xl text-slate-500 pb-3">
-                  {blog.blogTitle}
-                </h2>
-                <p>Type: {blog.type}</p>
-                <p>{blog.shortDescription}</p>
-              </div>
-              <motion.div className="pt-5 justify-left" variants={cardVariants}>
-                <Link to={`/BlogDetails/${blog._id}`}>
-                  <button className="text-blue-600 font-semibold border-none">
-                    View Details ..
-                  </button>
-                </Link>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        ))}
-      </motion.div> */}
 
-      <div className="grid grid-cols-3 gap-10">
-        {slicedBlog.map((blog) => (
-          <div key={blog.id}>
-            <figure className="h-[200px]">
+      <div className="grid grid-cols-12 grid-rows-2 gap-5 ">
+        {/* md:gap-20 md:grid-rows-none md:grid-cols-none md:grid-cols-12 md:grid-rows-2 */}
+        {slicedBlog.map((blog, index) => (
+          <div
+            key={index}
+            className={
+              index === 0
+                ? "col-span-7 row-span-2 relative "
+                : "col-span-5 row-span-1 relative"
+            }
+          >
+            <figure className={index === 0 ? "h-[320px]" : "h-[150px]"}>
               <img
                 src={blog.image}
                 alt="blog"
-                className="w-full h-full object-cover"
+                className="w-full h-full rounded-xl bg-cover"
               />
             </figure>
-            <div className="h-[250px] flex flex-col justify-between py-2">
-              <div>
-                <h2 className="card-title my-2 text-slate-500">
+
+            <div>
+            <div className="absolute bottom-0 w-full p-5">
+              <div className="hover:invisible  ">
+                <h2 className="card-title my-2 text-blue-600">
                   {blog.blogTitle}
                 </h2>
-                <p className="text-gray-400">Type: {blog.type}</p>
-                <p className="text-gray-500 pt-2 text-justify break-words ...">{blog.shortDescription}</p>
+                <p className="text-cyan-500">Type: {blog.type}</p>
               </div>
-              <Link to={`/BlogDetails/${blog._id}`} className="mt-2">
-                <p className="font-bold text-sm text-blue-600 hover:underline hover:decoration-solid hover:cursor-pointer w-fit">
-                  View Details
+            </div>
+
+            <div className="absolute bottom-0 w-full p-5">
+              <div className="hover:opacity-100  opacity-0">
+                <p className="text-gray-500 pt-2 text-justify break-words">
+                  {blog.shortDescription}
                 </p>
-              </Link>
+
+                <Link to={`/BlogDetails/${blog._id}`} className="mt-2">
+                  <p className="font-bold text-sm text-cyan-600 hover:underline hover:decoration-solid hover:cursor-pointer w-fit">
+                    View Details
+                  </p>
+                </Link>
+              </div>
+            </div>
             </div>
           </div>
         ))}

@@ -9,7 +9,7 @@ const Banner = ({post}) => {
     return (
         <div className=''>
             <Paper
-                className='h-[500px] bg-fixed'
+                className='h-[720px] bg-fixed'
       sx={{
         position: 'relative',
         backgroundColor: 'grey.800',
@@ -18,11 +18,11 @@ const Banner = ({post}) => {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundImage: `url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")`,
+        backgroundImage: `url("https://static.vecteezy.com/system/resources/previews/002/008/658/non_2x/abstract-black-hexagon-pattern-of-futuristic-texture-with-blue-light-rays-technology-concept-vector.jpg")`,
       }}
     >
       {/* hero background image */}
-      {<img style={{ display: 'none' }} src={"https://images.unsplash.com/photo-1568952433726-3896e3881c65?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} alt="this is banner" />}
+      {<img style={{ display: 'none' }} src={"https://static.vecteezy.com/system/resources/previews/002/008/658/non_2x/abstract-black-hexagon-pattern-of-futuristic-texture-with-blue-light-rays-technology-concept-vector.jpg"} alt="this is banner" />}
       <Box
         sx={{
           position: 'absolute',
@@ -40,10 +40,10 @@ const Banner = ({post}) => {
               position: 'relative',
               p: { xs: 3, md: 7 },
                   pr: { md: 0 },
-                  mt: { md: 5 },
+                  mt: { md: 20 },
             }}
           >
-            <Typography component="h1" variant="h3" className='text-cyan-300' gutterBottom>
+            <Typography component="h1" variant="h2" className='text-blue-500 ' gutterBottom>
               {post.title}
                 </Typography>
                 <Typography component="h1" variant="h3" color="inherit" gutterBottom>
