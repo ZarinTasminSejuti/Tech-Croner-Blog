@@ -38,8 +38,8 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="footer p-10 bg-base-200 text-base-content justify-around place-items-center">
-        <aside>
+      <footer className="footer p-10 bg-slate-800 text-base-content justify-around place-items-center">
+        <aside className="text-white">
       
           <DevicesIcon sx={{  fontSize: 52 }} />
           <p className="leading-6">
@@ -49,15 +49,15 @@ const Footer = () => {
           </p>
         </aside>
 
-        <nav className="flex flex-col justify-center items-center">
-          <header className="footer-title">Quick Links</header>
-          <div className="space-y-3 flex flex-col text-lg font-normal">
+        <nav className="flex flex-col text-center items-center">
+          <header className="footer-title text-white">Quick Links</header>
+          <div className="space-y-3 flex flex-col text-lg font-normal text-white">
             <a className="link link-hover">About us</a>
             <a className="link link-hover">Contact</a>
             <a className="link link-hover">Jobs</a>
             <a className="link link-hover">Press kit</a>
           </div>
-          <nav className="flex flex-row space-x-10 pt-20">
+          <nav className="flex flex-row space-x-10 pt-20 text-white">
             <a>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -95,14 +95,14 @@ const Footer = () => {
         </nav>
 
         <form onSubmit={handleSuggestionSubmit}>
-          <header className="footer-title">Any Suggestion</header>
+          <header className="footer-title text-slate-100">Any Suggestion</header>
           <fieldset className="form-control w-80">
             <div className="relative">
               <input
                 type="text"
                 name="name"
                 placeholder="Full name"
-                className="input input-bordered w-full pr-16"
+                className="input input-bordered w-full pr-16 bg-slate-100"
               />
             </div>
           </fieldset>
@@ -113,7 +113,7 @@ const Footer = () => {
                 type="email"
                 name="email"
                 placeholder="youremail@email.com"
-                className="input input-bordered w-full pr-16"
+                className="input input-bordered w-full pr-16 bg-slate-100"
               />
             </div>
           </fieldset>
@@ -124,19 +124,19 @@ const Footer = () => {
                 type="text"
                 name="suggestion"
                 placeholder="suggestion ..."
-                className="input input-bordered w-full resize-y h-28"
+                className="input input-bordered w-full resize-y h-28 bg-slate-100"
               ></textarea>
             </label>
-            <button className="btn rounded text-white hover:text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:bg-gradient-to-l hover:from-blue-600 hover:to-cyan-500">
+            <button className="py-3 rounded-lg text-white hover:text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:bg-gradient-to-l hover:from-blue-600 hover:to-cyan-500">
               Subscribe
             </button>
           </fieldset>
         </form>
       </footer>
 
-      <footer className="footer footer-center px-10 py-4 bg-base-200 text-base-content border-base-300">
+      <footer className="footer footer-center px-10 py-4 bg-slate-800 text-base-content border-base-300">
         <aside>
-          <p>Copyright © 2023 - All right reserved by Tech Corner</p>
+          <p className="text-white">Copyright © 2023 - All right reserved by Tech Corner</p>
         </aside>
       </footer>
     </>

@@ -1,4 +1,3 @@
-
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import CommentDetails from "./CommentDetails";
@@ -14,18 +13,18 @@ const Comment = ({ blogId }) => {
     event.preventDefault();
 
     const options = {
-      year: 'numeric',
-      month: 'short',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
     };
 
     const form = event.target;
     const userName = userDetails.displayName;
     const userPic = userDetails.photoURL;
     const comment = form.comment.value;
-    const dateTime = new Date().toLocaleString('en-US', options);
+    const dateTime = new Date().toLocaleString("en-US", options);
     //   const blogID =
 
     const commentObj = {
@@ -35,8 +34,6 @@ const Comment = ({ blogId }) => {
       comment,
       dateTime,
     };
- 
-
 
     fetch("http://localhost:5000/comment", {
       method: "POST",
@@ -55,35 +52,36 @@ const Comment = ({ blogId }) => {
 
   return (
     <div>
-      <div className="grid grid-cols-12 gap-10 mt-20 mb-28">
+      <div className="grid grid-cols-12 gap-10 mt-20 mb-28 ">
         <div className="col-span-8">
-        <form onSubmit={handleComment}>
-          {/* <header className="footer-title">Any Suggestion</header> */}
+          <CommentDetails
+            blogId={blogId}
+            updateComment={updateComment}
+          ></CommentDetails>
+        </div>
+        <div className="col-span-8">
+          <form onSubmit={handleComment}>
+            {/* <header className="footer-title">Any Suggestion</header> */}
 
-          <fieldset className="form-control ">
-      
-            <div className="w-full my-6">
-              <textarea
-                type="text"
-                name="comment"
-                placeholder="comment ..."
-                className="input input-bordered resize-y rounded-3xl w-full h-56 p-3"
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="w-fit rounded-full bg-slate-900 px-5 py-2 text-white" 
-            >
-              POST COMMENT
-            </button>
-          </fieldset>
-        </form>
-
-        <CommentDetails
-          blogId={blogId}
-          updateComment={updateComment}
-        ></CommentDetails>
+            <fieldset className="form-control ">
+              <div className="w-full my-6">
+                <textarea
+                  type="text"
+                  name="comment"
+                  placeholder="comment ..."
+                  className="input input-bordered resize-y rounded-3xl w-full h-56 p-3"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                className="w-fit rounded-full bg-slate-800 px-5 py-2 text-white"
+              >
+                POST COMMENT
+              </button>
+            </fieldset>
+          </form>
+     
         </div>
       </div>
     </div>

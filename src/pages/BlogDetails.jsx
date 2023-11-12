@@ -9,16 +9,14 @@ const BlogDetails = () => {
   //const { userDetails } = useContext(AuthContext);
 
   return (
-    <div className=" ">
-      <div className="py-10 text-black px-24">
-        <p className="font-bold text-3xl">Blog Details</p>
+    <div className=" px-24">
+      <div className="py-14 ">
+        <p className="font-bold text-5xl text-blue-600">
+          {blogSelected.blogTitle}
+        </p>
       </div>
 
-      <div
-        style={{ backgroundImage: `url('${blogSelected.image}')` }}
-        className="h-96 w-full flex mb-20 bg-cover bg-center"
-      >
-        <div
+      {/* <div
           style={{
             position: "absolute",
             top: 0,
@@ -27,27 +25,35 @@ const BlogDetails = () => {
             height: 0,
             backgroundColor: "rgba(0, 0, 0, 0.3)",
           }}
-        ></div>
-        <div className="w-1/2 my-auto mx-auto text-center">
-          <p className="font-bold text-4xl text-white">
-            Blog Title: {blogSelected.blogTitle}
+        ></div> */}
+
+      <div className="grid grid-cols-12 gap-10">
+        <div className="col-span-8 ">
+          <div className="my-auto mx-auto text-center ">
+            <img className="w-full h-auto" src={blogSelected.image} alt="" />
+          </div>
+          <p className="text-justify text-lg font-normal mb-2 italic mt-5 text-gray-500">
+            Category: {blogSelected.type}
+          </p>
+          <p className="text-justify text-base font-light leading-8 text-gray-500">
+            {blogSelected.longDescription}
           </p>
         </div>
-      </div>
+        <div className=" bg-gray-50 col-span-4 flex flex-col items-center py-12 h-fit">
+          <div className="w-44 h-44 text-center ">
+            <img
+              className="w-full h-auto rounded-full"
+              src={blogSelected.userImage}
+              alt={blogSelected.userName}
+            />
+          </div>
 
-      <div className=" px-24">
-        <div className="grid grid-cols-12 gap-10">
-                  <div className="col-span-8">
-                  <p className="text-justify text-lg font-normal mb-2 italic">Category: {blogSelected.type}</p>
-            <p className="text-justify text-lg font-light leading-8">{blogSelected.longDescription}</p>
-          </div>
-          <div className="border-solid border border-gray-400 bg-gray-100 col-span-4 ">
-            <p className="">More Details:</p>
-          </div>
+          <p className="mt-5 text-blue-600 text-xl font-bold font-serif">{blogSelected.userName}</p>
+          <p className="text-gray-500 font-light">{blogSelected.userEmail}</p>
         </div>
-        <br />
-        <Comment blogId={blogSelected._id}></Comment>
       </div>
+      <br />
+      <Comment blogId={blogSelected._id}></Comment>
     </div>
   );
 };

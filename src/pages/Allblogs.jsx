@@ -106,7 +106,7 @@ const Allblogs = () => {
 
 
   return (
-    <div className="px-24 ">
+    <div className="px-24 bg-slate-100">
       <div className="py-10 text-black ">
         <p className="font-bold text-3xl">All Blogs</p>
       </div>

@@ -7,8 +7,17 @@ const AddBlog = () => {
   const navigate = useNavigate();
   const { userDetails, effect, setEffect } = useContext(AuthContext);
 
+  
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const options = {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
 
     const form = event.target;
     const blogTitle = form.title.value;
@@ -17,7 +26,10 @@ const AddBlog = () => {
     const longDescription = form.longDescription.value;
     const image = form.image.value;
     const userEmail = userDetails.email;
+    const blogPostDateTime = new Date().toLocaleString("en-US", options);
     const submitTime = Math.floor(Date.now() / 1000); //Time in seconds
+    const userName = userDetails.displayName;
+    const userImage = userDetails.photoURL
 
     const newBlog = {
       blogTitle,
@@ -27,6 +39,9 @@ const AddBlog = () => {
       image,
       userEmail,
       submitTime,
+      blogPostDateTime,
+      userName,
+      userImage,
     };
 
     //send data to the server
@@ -52,7 +67,7 @@ const AddBlog = () => {
   };
 
   return (
-    <div className="px-24">
+    <div className="px-24 bg-slate-100">
       <div className="py-10 text-black ">
         <p className="font-bold text-4xl">Add New
           Blog</p>
