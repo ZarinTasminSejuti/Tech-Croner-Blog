@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-// import { motion } from "framer-motion";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 
 const RecentBlogs = ({ allBlog }) => {
   const sortedBlog = allBlog.sort((a, b) => a.submitTime - b.submitTime);
-  const slicedBlog = sortedBlog.slice(0, 3);
+  const slicedBlog = sortedBlog.slice(0, 6);
 
   // const containerVariants = {
   //   hidden: {},
@@ -27,55 +28,44 @@ const RecentBlogs = ({ allBlog }) => {
   return (
     <div className="px-24 min-h-screen mt-16">
       <div className="p-5 text-center pb-24">
-        <h1 className="text-4xl font-bold text-blue-600">Recent Blogs</h1>
+        <p className="text-4xl font-bold text-blue-600">Recent Blogs</p>
       </div>
 
-      <div className="grid grid-cols-12 grid-rows-2 gap-5 ">
-        {/* md:gap-20 md:grid-rows-none md:grid-cols-none md:grid-cols-12 md:grid-rows-2 */}
-        {slicedBlog.map((blog, index) => (
-          <div
-            key={index}
-            className={
-              index === 0
-                ? "col-span-7 row-span-2 relative "
-                : "col-span-5 row-span-1 relative"
-            }
-          >
-            <figure className={index === 0 ? "h-[320px]" : "h-[150px]"}>
-              <img
-                src={blog.image}
-                alt="blog"
-                className="w-full h-full rounded-xl bg-cover"
-              />
-            </figure>
-
-            <div>
-            <div className="absolute bottom-0 w-full p-5">
-              <div className="hover:invisible  ">
-                <h2 className="card-title my-2 text-blue-600">
-                  {blog.blogTitle}
-                </h2>
-                <p className="text-cyan-500">Type: {blog.type}</p>
-              </div>
-            </div>
-
-            <div className="absolute bottom-0 w-full p-5">
-              <div className="hover:opacity-100  opacity-0">
-                <p className="text-gray-500 pt-2 text-justify break-words">
-                  {blog.shortDescription}
-                </p>
-
-                <Link to={`/BlogDetails/${blog._id}`} className="mt-2">
-                  <p className="font-bold text-sm text-cyan-600 hover:underline hover:decoration-solid hover:cursor-pointer w-fit">
-                    View Details
+      <div className="grid grid-cols-3 gap-10 mb-20">
+          {slicedBlog.map((blog, index) => (
+            <div key={index + 1} className="mb-10 ">
+              <PhotoProvider>
+                <PhotoView src={blog.image}>
+                  <img
+                    src={blog.image}
+                    alt="blog"
+                    className="w-full h-[250px] bg-cover"
+                  />
+                </PhotoView>
+              </PhotoProvider>
+              <div className="h-[250px] flex flex-col justify-between py-2">
+                <div>
+                  <h2 className="card-title my-2 text-black">
+                    {blog.blogTitle}
+                  </h2>
+                  <p className="text-gray-400 text-xs">Category: {blog.type}</p>
+                  <p className="text-gray-500 pt-2 text-justify break-words ...">
+                    {blog.shortDescription}
                   </p>
-                </Link>
+                </div>
+
+                <div className="flex gap-5">
+                  <Link to={`/BlogDetails/${blog._id}`} className="">
+                    <p className="font-bold text-sm text-blue-500 hover:underline hover:decoration-solid hover:cursor-pointer">
+                      View Details
+                    </p>
+                  </Link>
+                  
+                </div>
               </div>
             </div>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
     </div>
   );
 };

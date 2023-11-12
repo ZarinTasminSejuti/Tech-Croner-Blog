@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 const CommentDetails = ({ blogId, updateComment }) => {
-
-
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
@@ -17,31 +15,36 @@ const CommentDetails = ({ blogId, updateComment }) => {
       });
   }, [updateComment]);
 
-  const filteredComment = comments.filter((ele) => ele.blogId === blogId)
-
+  const filteredComment = comments.filter((ele) => ele.blogId === blogId);
 
   return (
-    <div className="bg-green-500">
-      <div className="bg-green-500 w-1/2 mx-auto">
-      {filteredComment.map((ele) => (
-    <div key={ele.id} className="chat chat-start">
-      <div className="chat-image avatar">
-        <div className="w-10 rounded-full">
-          <img src={ele.userPic} alt={`User ${ele.userName}`} />
-        </div>
-      </div>
-      <div className="chat-header">
-        <h5>{ele.userName}</h5>
-        {/* <time className="text-xs opacity-50">12:45</time> */}
-      </div>
-      <div className="chat-bubble">
-        <p>{ele.comment}</p>
+    <div>
+      <div className="mt-10">
+        {filteredComment.map((ele) => (
+          <div key={ele.id} className="mb-8 ">
+            <div className="flex gap-6">
+              <div className="w-20">
+                <img
+                  className="rounded-full w-full h-auto"
+                  src={ele.userPic}
+                  alt={`User ${ele.userName}`}
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <div className="flex">
+                <p className="font-semibold mr-5">{ele.userName}</p>
+                <p className="text-slate-500">{`says ${ele.dateTime}`}</p>
+                </div>
+                <p className="mt-1 text-slate-500 font-light leading-7">
+                  {ele.comment}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
-  ))}
- </div>
-</div>
-
   );
 };
 

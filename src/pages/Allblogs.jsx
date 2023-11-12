@@ -10,21 +10,26 @@ import { AuthContext } from "../providers/AuthProvider";
 
 
 const Allblogs = () => {
-  const [searchText, setSearchText] = useState('');
 
   const blogCollection = useLoaderData();
   const { userDetails } = useContext(AuthContext);
 
+
+  const [searchText, setSearchText] = useState("");
+  const [filteredBlog, setFilteredBlog] = useState(blogCollection);
+
+
+
 //Search function  
-const handleSearch = (event) => {
-  event.preventDefault();
-  setSearchText (event.target.value);
-  };
+  const handleSearch = (event) => {
+    setSearchText(event.target.value.toLowerCase())
 
-const filteredBlogs = blogCollection.filter(blog => 
-  blog.blogTitle.toLowerCase().includes(searchText)
-);
-
+    const filteredSearchedBlog = blogCollection.filter(blog => 
+      blog.blogTitle.toLowerCase().includes(searchText)
+    )
+    setFilteredBlog(filteredSearchedBlog);
+    // console.log(filteredBlog);
+  }
 
 
   //wishlist post method
@@ -63,6 +68,7 @@ const filteredBlogs = blogCollection.filter(blog =>
       });
   };
 
+  
   //Category or type counts
   const countByType = blogCollection.reduce((acc, obj) => {
     const { type } = obj;
@@ -75,12 +81,25 @@ const filteredBlogs = blogCollection.filter(blog =>
     type,
     count: countByType[type],
   }));
-
+ 
   //All blog count
   const allBlogCount = resultArray.reduce(
     (total, item) => total + item.count,
     0
   );
+
+//  //Handle All Button
+ const handleAllButton = () => {
+  setFilteredBlog(blogCollection);
+}
+  
+//   //Handle Category Button
+  const handleCategoryButton  = (category) => {
+    const filteredCategory = blogCollection.filter(blog => 
+      blog.type === category
+    )
+    setFilteredBlog(filteredCategory);
+  }
 
 
 
@@ -96,16 +115,18 @@ const filteredBlogs = blogCollection.filter(blog =>
         <div className="my-10 rounded-md mx-auto">
           <input
             className="bg-gray-100 w-1/2 px-5 py-2 rounded-full border-gray-400 border-solid border-2"
-             onChange={(e) => {
-              handleSearch(e)
-              }}
+            type="text"
+          //  value={searchText}
+            onChange={handleSearch}
               placeholder="Search by blog title…"
             />
          
         </div>
         <div className="mb-10">
           <div className="justify-center  flex flex-wrap w-4/5 mx-auto">
-            <button className=" text-sm m-2 rounded-full py-2 px-4 w-fit flex items-center font-light bg-blue-600 text-white">
+            <button
+                 onClick={() => handleAllButton()}
+              className=" text-sm m-2 rounded-full py-2 px-4 w-fit flex items-center font-light bg-blue-600 text-white">
               All
               <span className="bg-cyan-500 text-white  ml-2 rounded-full inline-block w-5 h-5">
                 {allBlogCount}
@@ -114,6 +135,7 @@ const filteredBlogs = blogCollection.filter(blog =>
 
             {resultArray.map((item, index) => (
               <button
+                onClick={() => handleCategoryButton(item.type)}
                 key={index}
                 className="bg-cyan-500 text-white text-sm m-2 rounded-full py-2 px-4 w-fit flex items-center font-light"
               >
@@ -128,7 +150,7 @@ const filteredBlogs = blogCollection.filter(blog =>
 
         {/* All Blogs field */}
         <div className="grid grid-cols-3 gap-10 mb-20">
-          {filteredBlogs.map((blog, index) => (
+          {filteredBlog.map((blog, index) => (
             <div key={index + 1} className="mb-10 ">
               <PhotoProvider>
                 <PhotoView src={blog.image}>

@@ -10,8 +10,8 @@ const TechNews = () => {
         </div>
         <div className="p-5">
           <h1 className="font-bold text-5xl">
-            <span className="text-slate-500">Latest list</span> of Our{" "}
-            <h1 className="text-blue-600 mt-4"> Tech News</h1>
+            <span className="text-slate-500">Latest list</span> of Our{" "} <br />
+            <span className="text-blue-600 mt-4"> Tech News</span>
           </h1>
           <p className="text-grey text-justify w-full my-5 text-gray-500">
             Dive into the latest in tech news to uncover groundbreaking

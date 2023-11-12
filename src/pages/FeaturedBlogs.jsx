@@ -4,20 +4,6 @@ import { useLoaderData } from "react-router-dom";
 import Avatar from "../components/Avatar.jsx";
 
 const FeaturedBlogs = () => {
-//   const getMuiTheme = () =>
-//     createTheme({
-//       components: {
-//         MUIDataTableBodyCell: {
-//           styleOverrides: {
-//             root: {
-//                   backgroundColor: "#FF0000",
-
-
-//             },
-//           },
-//         },
-//       },
-//     });
 
   let data = [];
 
@@ -27,7 +13,7 @@ const FeaturedBlogs = () => {
     (a, b) => b.longDescription.length - a.longDescription.length
   );
 
-  const slicedFeaturedBlog = sortedFeatureBlog.slice(0, 11);
+  const slicedFeaturedBlog = sortedFeatureBlog.slice(0, 10);
 
   slicedFeaturedBlog.forEach((ele, index) => {
     data.push([
@@ -44,15 +30,14 @@ const FeaturedBlogs = () => {
   //     filterType: "checkbox",
   //   };
   return (
-    <div className="min-h-screen">
-      <div className="p-7 w-full bg-cyan-100">
-        <p className="ml-5 font-bold text-2xl">Featured Blogs</p>
+    <div className="min-h-screen px-24">
+      <div className="py-10 text-black ">
+        <p className="font-bold text-3xl">Featured Blogs</p>
       </div>
 
     
               <MUIDataTable
                 
-          title={"Employee List"}
           data={data}
           columns={columns}
           // options={options}
