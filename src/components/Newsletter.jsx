@@ -43,13 +43,13 @@ const Newsletter = () => {
       >
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 justify-around w-full">
           <div className="text-center text-white relative z-10">
-            <p className="text-5xl font-bold">1598+</p>
+            <p className="text-5xl font-bold">598+</p>
             <strong className="bg-blue-600 inline-block my-5 w-11 h-1"></strong>
             <p className="text-xl font-semibold">BLOGS</p>
           </div>
 
           <div className="text-center text-white relative z-10">
-            <p className="text-5xl font-bold">16173</p>
+            <p className="text-5xl font-bold">161</p>
             <strong className="bg-blue-600 inline-block my-5 w-11 h-1"></strong>
             <p className="text-xl font-semibold">ACTIVE USERS</p>
           </div>

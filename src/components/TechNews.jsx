@@ -3,15 +3,15 @@ const TechNews = () => {
     <div className="w-[1280px] mx-auto my-24">
       <div className="flex items-center gap-3">
         <div className="grid grid-cols-2 gap-6">
-          <img className="w-[900px] h-[300px]" src="https://i.ibb.co/nC21Rsd/Rectangle-2-6.png" alt="" />
-          <img className="w-[900px] h-[300px]" src="https://i.ibb.co/nC21Rsd/Rectangle-2-6.png" alt="" />
-          <img className="w-[900px] h-[300px]" src="https://i.ibb.co/nC21Rsd/Rectangle-2-6.png" alt="" />
-          <img className="w-[900px] h-[300px]" src="https://i.ibb.co/nC21Rsd/Rectangle-2-6.png" alt="" />
+          <img className="w-[900px] h-[280px] rounded-md" src="https://i.ibb.co/Lg6LsdT/tech1.jpg" alt="" />
+          <img className="w-[900px] h-[280px] rounded-md" src="https://i.ibb.co/c6jdQ8z/tech2.jpg" alt="" />
+          <img className="w-[900px] h-[280px] rounded-md" src="https://i.ibb.co/nDmg8j4/tech3.jpg" alt="" />
+          <img className="w-[900px] h-[280px] rounded-md" src="https://i.ibb.co/6rwx37C/tech4.jpg" alt="" />
         </div>
         <div className="p-5">
           <h1 className="font-bold text-5xl">
             <span className="text-slate-500">Latest list</span> of Our{" "} <br />
-            <span className="text-blue-600 mt-4"> Tech News</span>
+            <span className="text-blue-600"> Tech News</span>
           </h1>
           <p className="text-grey text-justify w-full my-5 text-gray-500">
             Dive into the latest in tech news to uncover groundbreaking

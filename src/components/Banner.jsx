@@ -9,7 +9,7 @@ const Banner = ({post}) => {
     return (
         <div className=''>
             <Paper
-                className='h-[720px] bg-fixed'
+                className='h-[700px] bg-fixed'
       sx={{
         position: 'relative',
         backgroundColor: 'grey.800',
@@ -18,7 +18,7 @@ const Banner = ({post}) => {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundImage: `url("https://static.vecteezy.com/system/resources/previews/002/008/658/non_2x/abstract-black-hexagon-pattern-of-futuristic-texture-with-blue-light-rays-technology-concept-vector.jpg")`,
+        backgroundImage: `url("https://i.ibb.co/3FgMPXm/blog-banner.jpg")`,
       }}
     >
       {/* hero background image */}

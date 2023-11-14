@@ -5,7 +5,7 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const AddBlog = () => {
   const navigate = useNavigate();
-  const { userDetails, effect, setEffect } = useContext(AuthContext);
+  const { userDetails, } = useContext(AuthContext);
 
   
   const handleSubmit = (event) => {
@@ -58,7 +58,7 @@ const AddBlog = () => {
           swal("Blog Added!", "New Blog added Successful!", "success");
           form.reset();
           navigate("/addBlog");
-          setEffect(!effect);
+          // setEffect(!effect);
         }
       })
       .catch(() => {
@@ -122,7 +122,7 @@ const AddBlog = () => {
                 </span>
               </label>
               <label>
-                <select
+             <select
                   name="type"
                   className="select rounded-md bg-white input-bordered w-full"
                 >

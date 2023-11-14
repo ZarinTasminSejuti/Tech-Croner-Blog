@@ -34,19 +34,40 @@ const Allblogs = () => {
 
   //wishlist post method
   const handleAddWishlist = (blogElement) => {
+    const options = {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+
     const blogTitle = blogElement.blogTitle;
     const type = blogElement.type;
     const shortDescription = blogElement.shortDescription;
+    const longDescription = blogElement.longDescription;
     const image = blogElement.image;
     const userEmail = userDetails.email;
+    const blogPostDateTime = new Date().toLocaleString("en-US", options);
+    const submitTime = Math.floor(Date.now() / 1000); //Time in seconds
+    const userName = userDetails.displayName;
+    const userImage = userDetails.photoURL
 
     const newWishlist = {
       blogTitle,
-      type,
       shortDescription,
+      type,
+      longDescription,
       image,
       userEmail,
+      submitTime,
+      blogPostDateTime,
+      userName,
+      userImage,
     };
+
+    
+
 
     fetch("http://localhost:5000/wishlist", {
       method: "POST",
@@ -162,27 +183,23 @@ const Allblogs = () => {
                 </PhotoView>
               </PhotoProvider>
               <div className="h-[250px] flex flex-col justify-between py-2">
-                <div>
+                <div className="overflow-hidden h-full">
                   <h2 className="card-title my-2 text-black">
                     {blog.blogTitle}
                   </h2>
-                  <p className="text-gray-400 text-xs">Category: {blog.type}</p>
-                  <p className="text-gray-500 pt-2 text-justify break-words ...">
+                  <p className="text-gray-400 text-left text-sm">Category: {blog.type}</p>
+                  <p className="text-gray-500 pt-2 text-justify">
                     {blog.shortDescription}
                   </p>
                 </div>
 
                 <div className="flex gap-5">
-                  <Link to={`/BlogDetails/${blog._id}`} className="">
+                  <Link to={`/blogDetails/${blog._id}`} className="">
                     <p className="font-bold text-sm text-blue-500 hover:underline hover:decoration-solid hover:cursor-pointer">
                       View Details
                     </p>
                   </Link>
-                  <Link to={`/updateBlog/${blog._id}`}>
-                    <p className="font-bold text-sm text-blue-500 hover:underline hover:decoration-solid hover:cursor-pointer">
-                      Edit
-                    </p>
-                  </Link>
+                 
 
                   <FaHeart
                     onClick={() => handleAddWishlist(blog)}

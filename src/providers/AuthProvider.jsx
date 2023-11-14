@@ -22,20 +22,20 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [allBlog, setAllBlog] = useState([]);
-const [effect, setEffect] = useState(true);
-    
+  const [effect, setEffect] = useState(true);
+
   const allBlogUrl = "http://localhost:5000/allBlog";
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      const response = await fetch(allBlogUrl);
-      const result = await response.json();
-      setAllBlog(result);
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      // console.log("done", currentUser);
+      setUser(currentUser);
       setLoading(false);
+    });
+    return () => {
+      unSubscribe();
     };
-    fetchData();
-  }, [effect]); // The dependency array with 'apiUrl'
+  }, []);
 
   const signUp = (email, password) => {
     setLoading(true);
@@ -70,17 +70,17 @@ const [effect, setEffect] = useState(true);
   };
 
   const userDetails = auth.currentUser;
+  const userEmail = user?.email || "";
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      // console.log("done", currentUser);
-      setUser(currentUser);
-      setLoading(false);
-    });
-    return () => {
-      unSubscribe();
+    const fetchData = async () => {
+      const response = await fetch(allBlogUrl);
+      const result = await response.json();
+      setAllBlog(result);
+      setLoading(true);
     };
-  }, []);
+    fetchData();
+  }, [effect]);
 
   const authInfo = {
     signIn,
@@ -91,9 +91,10 @@ const [effect, setEffect] = useState(true);
     user,
     logOut,
     userDetails,
-      allBlog,
-      effect,
-      setEffect,
+    userEmail,
+    allBlog,
+    effect,
+    setEffect,
   };
 
   return (

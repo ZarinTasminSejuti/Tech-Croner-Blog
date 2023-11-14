@@ -1,11 +1,13 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Comment from "../components/Comment";
 
 import PropTypes from "prop-types";
+import { FaEdit } from "react-icons/fa";
 
 const BlogDetails = () => {
   const blogSelected = useLoaderData();
-  console.log(typeof blogSelected._id);
+
+  
   //const { userDetails } = useContext(AuthContext);
 
   return (
@@ -16,16 +18,6 @@ const BlogDetails = () => {
         </p>
       </div>
 
-      {/* <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: 0,
-            height: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.3)",
-          }}
-        ></div> */}
 
       <div className="grid grid-cols-12 gap-10">
         <div className="col-span-8 ">
@@ -38,6 +30,12 @@ const BlogDetails = () => {
           <p className="text-justify text-base font-light leading-8 text-gray-500">
             {blogSelected.longDescription}
           </p>
+
+          <Link to={`/updateBlog/${blogSelected._id}`}>
+                    <p className=" flex  items-center gap-2 font-bold text-md text-blue-500 hover:underline hover:decoration-solid hover:cursor-pointer mt-10">
+                    <FaEdit></FaEdit>Edit Blog
+                    </p>
+                  </Link>
         </div>
         <div className=" bg-gray-50 col-span-4 flex flex-col items-center py-12 h-fit">
           <div className="w-44 h-44 text-center ">
@@ -53,7 +51,7 @@ const BlogDetails = () => {
         </div>
       </div>
       <br />
-      <Comment blogId={blogSelected._id}></Comment>
+      <Comment blogId={blogSelected._id} blogEmail={blogSelected.userEmail}   ></Comment>
     </div>
   );
 };

@@ -4,10 +4,10 @@ import CommentDetails from "./CommentDetails";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const Comment = ({ blogId }) => {
+const Comment = ({ blogId, blogEmail }) => {
   const [updateComment, setUpdateComment] = useState(false);
 
-  const { userDetails } = useContext(AuthContext);
+  const { userDetails, userEmail } = useContext(AuthContext);
 
   const handleComment = (event) => {
     event.preventDefault();
@@ -26,7 +26,7 @@ const Comment = ({ blogId }) => {
     const comment = form.comment.value;
     const dateTime = new Date().toLocaleString("en-US", options);
     //   const blogID =
-
+    console.log(userDetails)
     const commentObj = {
       blogId,
       userName,
@@ -57,32 +57,49 @@ const Comment = ({ blogId }) => {
           <CommentDetails
             blogId={blogId}
             updateComment={updateComment}
+          
           ></CommentDetails>
         </div>
-        <div className="col-span-8">
-          <form onSubmit={handleComment}>
-            {/* <header className="footer-title">Any Suggestion</header> */}
 
-            <fieldset className="form-control ">
-              <div className="w-full my-6">
-                <textarea
-                  type="text"
-                  name="comment"
-                  placeholder="comment ..."
-                  className="input input-bordered resize-y rounded-3xl w-full h-56 p-3"
-                  required
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-fit rounded-full bg-slate-800 px-5 py-2 text-white"
-              >
-                POST COMMENT
-              </button>
-            </fieldset>
-          </form>
-     
-        </div>
+
+        {
+          userEmail === blogEmail ? (
+            <div className="col-span-8">
+                <p className="text-blue-600 text-xl font-bold">This is your blog, You can not comment here.</p>
+         </div>
+          ) : (
+              
+              
+            <div className="col-span-8">
+            <form onSubmit={handleComment}>
+              {/* <header className="footer-title">Any Suggestion</header> */}
+  
+              <fieldset className="form-control ">
+                <div className="w-full my-6">
+                  <textarea
+                    type="text"
+                    name="comment"
+                    placeholder="comment ..."
+                    className="input input-bordered resize-y rounded-3xl w-full h-56 p-3"
+                    required
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="w-fit rounded-full bg-slate-800 px-5 py-2 text-white"
+                >
+                  POST COMMENT
+                </button>
+              </fieldset>
+            </form>
+       
+          </div>
+           )
+}
+
+
+
+      
       </div>
     </div>
   );
@@ -91,5 +108,7 @@ const Comment = ({ blogId }) => {
 export default Comment;
 
 Comment.propTypes = {
+  keyValue: PropTypes.string,
   blogId: PropTypes.string,
+  blogEmail: PropTypes.string,
 };

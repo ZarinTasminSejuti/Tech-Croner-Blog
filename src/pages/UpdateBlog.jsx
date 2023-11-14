@@ -51,8 +51,8 @@ const UpdateBlog = () => {
   };
 
   return (
-    <div className="bg-white w-full">
-      <div className="p-7 w-full bg-cyan-100"><p className="ml-5 font-bold text-2xl">Edit Blog</p></div>
+    <div className="bg-white w-full min-h-screen">
+      {/* <div className="p-7 w-full "><p className="ml-5 font-bold text-3xl">Edit Blog</p></div> */}
       <div className="py-20 w-full lg:w-[1280px] mx-auto">
         <h3 className="text-5xl text-center mb-24 font-semibold">
           <span className="text-3xl text-blue-600 font-semibold"></span> Edit{" "}

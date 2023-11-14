@@ -18,13 +18,13 @@ const CommentDetails = ({ blogId, updateComment }) => {
   const filteredComment = comments.filter((ele) => ele.blogId === blogId);
 
   return (
-    <div>
-      <div className=" ">
+
+      <div>
         <div className="mb-12">
           <p className="text-2xl">Comments</p>
         </div>
         {filteredComment.map((ele) => (
-          <div key={ele.id} className="mb-10 ">
+          <div key={ele._id} className="mb-10 ">
             <div className="w-full inline-flex gap-7 ">
             <div className="avatar">
               <div className="w-20 h-20 ">
@@ -51,7 +51,7 @@ const CommentDetails = ({ blogId, updateComment }) => {
           </div>
         ))}
       </div>
-    </div>
+
   );
 };
 
@@ -60,4 +60,5 @@ export default CommentDetails;
 CommentDetails.propTypes = {
   blogId: PropTypes.string,
   updateComment: PropTypes.bool,
+  keyValue: PropTypes.string,
 };
