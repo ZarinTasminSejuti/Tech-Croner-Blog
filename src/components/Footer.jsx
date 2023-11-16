@@ -16,7 +16,7 @@ const Footer = () => {
     };
 
     //send data to the server
-    fetch("http://localhost:5000/suggestion", {
+    fetch("https://tech-corner-server.vercel.app/suggestion", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

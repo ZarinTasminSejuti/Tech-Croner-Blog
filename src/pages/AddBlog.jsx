@@ -5,7 +5,7 @@ import { AuthContext } from "../providers/AuthProvider";
 
 const AddBlog = () => {
   const navigate = useNavigate();
-  const { userDetails, } = useContext(AuthContext);
+  const { userDetails} = useContext(AuthContext);
 
   
   const handleSubmit = (event) => {
@@ -45,11 +45,12 @@ const AddBlog = () => {
     };
 
     //send data to the server
-    fetch("http://localhost:5000/addBlog", {
+    fetch("https://tech-corner-project.vercel.app/addBlog", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+
       body: JSON.stringify(newBlog),
     })
       .then((response) => response.json())
@@ -58,7 +59,7 @@ const AddBlog = () => {
           swal("Blog Added!", "New Blog added Successful!", "success");
           form.reset();
           navigate("/addBlog");
-          // setEffect(!effect);
+          //setEffect(!effect);
         }
       })
       .catch(() => {
@@ -67,9 +68,9 @@ const AddBlog = () => {
   };
 
   return (
-    <div className="px-24 bg-slate-100">
+    <div className="px-2 lg:px-24 bg-slate-100">
       <div className="py-10 text-black ">
-        <p className="font-bold text-4xl">Add New
+        <p className="font-bold pl-5  text-4xl">Add New
           Blog</p>
       </div>
 

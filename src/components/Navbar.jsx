@@ -16,6 +16,7 @@ import DevicesIcon from "@mui/icons-material/Devices";
 import { AuthContext } from "../providers/AuthProvider";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { useTheme } from "@mui/material";
 
 
 const Navbar = () => {
@@ -24,13 +25,13 @@ const Navbar = () => {
   const pages = [
     { key: "home", content: <NavLink to="/">Home</NavLink> },
     { key: "add-blog", content: <NavLink to="/addBlog">Add Blog</NavLink> },
-    { key: "all-blogs", content: <NavLink to="/allBlogs">All Blogs</NavLink> },
+    { key: "all-blogs", content: <NavLink to="/allBlog">All Blogs</NavLink> },
     { key: "featured-blogs", content: <NavLink to="/featuredBlogs">Featured Blogs</NavLink> },
     { key: "wishlist", content: <NavLink to="/wishlist">Wishlist</NavLink> },
   ];
   
 
-
+  const theme = useTheme();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -65,7 +66,7 @@ const Navbar = () => {
     <div className="">
     <AppBar
       position="static"
-        className="px-24 bg-gradient-to-r from-blue-600 to-cyan-500 "
+        className="px-0 lg:px-24 bg-gradient-to-r from-blue-600 to-cyan-500 "
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -73,7 +74,7 @@ const Navbar = () => {
           <Typography
             variant="h6"
             noWrap
-            component="a"
+              component="a"
             href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
@@ -83,6 +84,10 @@ const Navbar = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              fontSize: {
+                // xs: theme.typography.pxToRem(15), 
+                md: theme.typography.pxToRem(25), 
+              },
             }}
           >
             Tech Corner
@@ -121,23 +126,61 @@ const Navbar = () => {
               {pages.map((page) => (
                 <MenuItem key={page.key} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page.content}</Typography>
+                  
                 </MenuItem>
               ))}
+                
+          <Box>
+          {user ? (
+         <>
+                <div className="flex items-center px-2 pb-3">
+                {/* <img
+                src={userDetails.photoURL}
+                alt={userDetails.displayName}
+                className="w-10 rounded"
+              />
+           
+            <span className="text-black">{userDetails.displayName}</span> */}
+            
+            <Button
+              sx={{ color: "red" }}
+                      onClick={handleLogOut}
+                      
+                  >Log Out</Button>
+                   </div>
+</>
+       ) : (
+         <div className="flex flex-col px-2">
+            <Link to="/login">
+              <Button sx={{ color: "blue" }} className="btn btn-ghost px-6">
+                Login
+              </Button>
+            </Link>
+            <Link to="/register">
+              <Button sx={{ color: "blue" }} className="btn btn-ghost px-6">
+                Register
+              </Button>
+            </Link>
+   </div>
+          )} 
+            
+          </Box>
             </Menu>
           </Box>
-          <DevicesIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <DevicesIcon  style={{ fontSize: '16px' }} sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+              href="#app-bar-with-responsive-menu"
+              style={{ fontSize: '14px' }}
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              letterSpacing: ".1rem",
               color: "inherit",
               textDecoration: "none",
             }}
@@ -172,8 +215,9 @@ const Navbar = () => {
             <span className="text-white">{userDetails.displayName}</span>
             
             <Button
-              sx={{ color: "white" }}
-              onClick={handleLogOut}
+              sx={{ color: "white", display: { xs: "none", md: "flex" } }}
+                      onClick={handleLogOut}
+                      
                   >Log Out</Button>
                    </div>
 </>
@@ -191,28 +235,7 @@ const Navbar = () => {
             </Link>
    </>
           )} 
-            {/* <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu> */}
+            
           </Box>
         </Toolbar>
       </Container>

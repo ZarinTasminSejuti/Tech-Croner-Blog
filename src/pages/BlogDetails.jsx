@@ -11,7 +11,7 @@ const BlogDetails = () => {
   //const { userDetails } = useContext(AuthContext);
 
   return (
-    <div className=" px-24">
+    <div className=" px-5 lg:px-24">
       <div className="py-14 ">
         <p className="font-bold text-5xl text-blue-600">
           {blogSelected.blogTitle}
@@ -19,8 +19,8 @@ const BlogDetails = () => {
       </div>
 
 
-      <div className="grid grid-cols-12 gap-10">
-        <div className="col-span-8 ">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-10">
+        <div className="lg:col-span-8 ">
           <div className="my-auto mx-auto text-center ">
             <img className="w-full h-auto" src={blogSelected.image} alt="" />
           </div>
@@ -32,7 +32,7 @@ const BlogDetails = () => {
           </p>
 
           <Link to={`/updateBlog/${blogSelected._id}`}>
-                    <p className=" flex  items-center gap-2 font-bold text-md text-blue-500 hover:underline hover:decoration-solid hover:cursor-pointer mt-10">
+                    <p className=" flex  items-center gap-2 font-bold text-md text-blue-500 hover:underline hover:decoration-solid hover:cursor-pointer mt-10 mb-10 lg:mb-0">
                     <FaEdit></FaEdit>Edit Blog
                     </p>
                   </Link>

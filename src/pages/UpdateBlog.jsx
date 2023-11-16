@@ -1,51 +1,67 @@
 import { useLoaderData } from "react-router-dom";
-
+import { AuthContext } from "../providers/AuthProvider";
+import { useContext } from "react";
 import swal from "sweetalert";
 
 const UpdateBlog = () => {
   const blog = useLoaderData();
-
+  const {effect,
+    setEffect } = useContext(AuthContext);
+  
   const {
-    blogTitle,
     _id,
   } = blog;
-
-  console.log(
-    blogTitle,
-    _id
-  );
+  
+  const options = {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    console.log(event);
     const form = event.target;
     const blogTitle = form.blogTitle.value;
     const shortDescription = form.shortDescription.value;
     const type = form.type.value;
     const longDescription = form.longDescription.value;
     const image = form.image.value;
+    const editDateTime = new Date().toLocaleString("en-US", options);
+    const submitTime = Math.floor(Date.now() / 1000); //Time in seconds
 
-    const newBlog = {
+
+    const updateBlog = {
       blogTitle,
       shortDescription,
       type,
       longDescription,
       image,
+      editDateTime,
+      submitTime,
       // userEmail,
     };
-    console.log(newBlog);
 
-    fetch(`http://localhost:5000/updateBlog/${_id}`, {
+
+    fetch(`https://tech-corner-project.vercel.app/updateBlog/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newBlog),
+
+      body: JSON.stringify(updateBlog),
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
           swal("Blog Updated!", "Blog updated Successfully!", "success");
+         
+          
+          setEffect(!effect)
+          event.target.reset();
+    
         }
       });
   };
@@ -56,8 +72,9 @@ const UpdateBlog = () => {
       <div className="py-20 w-full lg:w-[1280px] mx-auto">
         <h3 className="text-5xl text-center mb-24 font-semibold">
           <span className="text-3xl text-blue-600 font-semibold"></span> Edit{" "}
-          <span className="text-blue-600">{blog.blogTitle}</span>{" "}
           <span className="font-semibold">Blog</span>
+          <br />
+          <span className="text-blue-600">{blog.blogTitle}</span>
         </h3>
         <form onSubmit={handleSubmit} className="p-4 lg:p-0">
           {/* row one */}
@@ -71,6 +88,8 @@ const UpdateBlog = () => {
               <label>
                 <input
                   type="text"
+                  defaultValue={blog.blogTitle }
+                  
                   placeholder="Enter blog title..."
                   name="blogTitle"
                   className="input input-bordered bg-white w-full rounded-md"
@@ -88,6 +107,7 @@ const UpdateBlog = () => {
               <label>
                 <input
                   type="text"
+                  defaultValue={blog.image }
                   placeholder="Enter blog image..."
                   name="image"
                   className="input input-bordered bg-white w-full rounded-md"
@@ -138,6 +158,7 @@ const UpdateBlog = () => {
               <label>
                 <input
                   type="text"
+                  defaultValue={blog.shortDescription }
                   placeholder="Enter short description..."
                   name="shortDescription"
                   className="input rounded-md input-bordered w-full bg-white"
@@ -158,6 +179,7 @@ const UpdateBlog = () => {
               <label>
                 <textarea
                   type="text"
+                  defaultValue={blog.longDescription }
                   placeholder="Enter long description..."
                   name="longDescription"
                   className="input rounded-md bg-white input-bordered resize-y h-28 w-full"

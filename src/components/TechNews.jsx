@@ -1,12 +1,12 @@
 const TechNews = () => {
   return (
-    <div className="w-[1280px] mx-auto my-24">
-      <div className="flex items-center gap-3">
-        <div className="grid grid-cols-2 gap-6">
-          <img className="w-[900px] h-[280px] rounded-md" src="https://i.ibb.co/Lg6LsdT/tech1.jpg" alt="" />
-          <img className="w-[900px] h-[280px] rounded-md" src="https://i.ibb.co/c6jdQ8z/tech2.jpg" alt="" />
-          <img className="w-[900px] h-[280px] rounded-md" src="https://i.ibb.co/nDmg8j4/tech3.jpg" alt="" />
-          <img className="w-[900px] h-[280px] rounded-md" src="https://i.ibb.co/6rwx37C/tech4.jpg" alt="" />
+    <div className="w-full lg:w-[1280px] mx-auto my-24">
+      <div className="flex flex-col lg:flex-row gap-3">
+        <div className="grid grid-cols-2 lg:grid-cols-2 gap-6">
+          <img className="w-[900px] h-[180px] lg:h-[280px] rounded-md" src="https://i.ibb.co/Lg6LsdT/tech1.jpg" alt="" />
+          <img className="w-[900px] h-[180px] lg:h-[280px] rounded-md" src="https://i.ibb.co/c6jdQ8z/tech2.jpg" alt="" />
+          <img className="w-[900px] h-[180px] lg:h-[280px] rounded-md" src="https://i.ibb.co/nDmg8j4/tech3.jpg" alt="" />
+          <img className="w-[900px] h-[180px] lg:h-[280px] rounded-md" src="https://i.ibb.co/6rwx37C/tech4.jpg" alt="" />
         </div>
         <div className="p-5">
           <h1 className="font-bold text-5xl">
@@ -19,7 +19,7 @@ const TechNews = () => {
             technology. Explore the frontiers of AI, quantum computing, the meta
             verse, sustainability, and cybersecurity.
           </p>
-          <button className="btn bg-blue-600 text-white">Explore more</button>
+          <button className="btn bg-blue-600 text-white hover:text-blue-600">Explore more</button>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@
 import MUIDataTable from "mui-datatables";
 import { useLoaderData } from "react-router-dom";
 import Avatar from "../components/Avatar.jsx";
+import Serial from "../components/Serial.jsx";
 
 const FeaturedBlogs = () => {
 
@@ -17,20 +18,20 @@ const FeaturedBlogs = () => {
 
   slicedFeaturedBlog.forEach((ele, index) => {
     data.push([
-      index + 1,
+    <Serial key={index + 1} ele={(index + 1).toString()}/>,
       ele.blogTitle,
       ele.userEmail,
-      <Avatar key={index + 1} ele={ele.image} />,
+      <Avatar key={index + 1} ele={ele.userImage} />,
     ]);
   });
 
-  const columns = ["Serial", "Blog Title", "Blog Owner", "Owner Avatar"];
+  const columns = ["Serial No.", "Blog Title", "Blog Owner", "Owner Avatar"];
 
   //   const options = {
   //     filterType: "checkbox",
   //   };
   return (
-    <div className="min-h-screen px-24">
+    <div className="min-h-screen mb-10 px-2 lg:px-24">
       <div className="py-10 text-black ">
         <p className="font-bold text-3xl">Featured Blogs</p>
       </div>

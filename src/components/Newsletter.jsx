@@ -15,7 +15,7 @@ const Newsletter = () => {
     };
 
     //send data to the server
-    fetch("http://localhost:5000/newsletter", {
+    fetch("https://tech-corner-project.vercel.app/newsletter", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,9 +36,9 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="lg:relative">
       <div
-        className="flex bg-fixed justify-between p-20 text-center bg-cover h-full  items-center mb-[380px]"
+        className="flex bg-fixed justify-between p-20 text-center bg-cover h-full  items-center mb-16 lg:mb-[380px]"
         style={{ backgroundImage: "url(https://i.ibb.co/7Swk9s4/tech.jpg)" }}
       >
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-0 justify-around w-full">
@@ -63,8 +63,8 @@ const Newsletter = () => {
       </div>
 
       {/* newsletter field  */}
-      <div className="h-[300px] w-1/2 p-20 shadow-md rounded text-white bg-gradient-to-r from-blue-600 to-cyan-400 absolute top-96 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
-        <h2 className="font-semibold text-2xl mb-7">
+      <div className="lg:h-[300px] text-center w-full lg:w-1/2 p-10 mb-10 lg:mb-0 lg:p-20 shadow-md rounded text-white bg-gradient-to-r from-blue-600 to-cyan-400 lg:absolute top-0 lg:top-96 left-0 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 ">
+        <h2 className="font-semibold text-sm lg:text-2xl mb-7">
           Join our newsletter and subscribe for new features
         </h2>
 

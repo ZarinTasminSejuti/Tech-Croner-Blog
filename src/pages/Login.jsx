@@ -18,35 +18,57 @@ const Login = () => {
     const password = form.get("password");
 
     signIn(email, password)
-      .then(() => {
-        swal("You're logged in!", "Login Successful!", "success");
-        e.target.reset();
-        navigate("/");
-      })
-      .catch(() => {
-        swal(
-          "Login Failed!",
-          "Wrong credentials! Please login again.",
-          "error"
-        );
-      });
-  };
+    .then(() => {
+      swal("You're logged in!", "Login Successful!", "success");
+      e.target.reset();
+      navigate("/");
+    })
+    .catch(() => {
+      swal(
+        "Login Failed!",
+        "Wrong credentials! Please login again.",
+        "error"
+      );
+    });
+};
 
-  const handleGoogle = () => {
-    signInGoogle()
-      .then(() => {
-        swal("You're logged in!", "Login Successful!", "success");
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-        swal(
-          "Login Failed!",
-          "Wrong credentials! Please login again.",
-          "error"
-        );
-      });
-  };
+//   signIn(email, password)
+//   .then((result) => {
+//     const user = result._tokenResponse.email;
+//     //get access token
+//     axios.post("https://tech-corner-server.vercel.app/jwt", user, {withCredentials: true})
+//       .then(res => {
+//         if (res.data.success) {
+//           swal("You're logged in!", "Login Successful!", "success");
+//           e.target.reset();
+//           navigate("/");
+//         }
+//     })
+//   })
+//   .catch(() => {
+//     swal(
+//       "Login Failed!",
+//       "Wrong credentials! Please login again.",
+//       "error"
+//     );
+//   });
+// };
+
+const handleGoogle = () => {
+  signInGoogle()
+    .then(() => {
+      swal("You're logged in!", "Login Successful!", "success");
+      navigate("/");
+    })
+    .catch((error) => {
+      console.log(error);
+      swal(
+        "Login Failed!",
+        "Wrong credentials! Please login again.",
+        "error"
+      );
+    });
+};
 
   return (
     <div className="my-20 min-h-screen">

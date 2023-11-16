@@ -38,7 +38,7 @@ const Banner = ({post}) => {
           <Box
             sx={{
               position: 'relative',
-              p: { xs: 3, md: 7 },
+              p: { xs: 2, md: 7 },
                   pr: { md: 0 },
                   mt: { md: 20 },
             }}

@@ -41,25 +41,30 @@ const router = createBrowserRouter([
         ,
       },
       {
-        path: "/allBlogs",
-        element: <Allblogs></Allblogs>,
-        loader: () => fetch("http://localhost:5000/allBlog"),
+        path: "/allBlog",
+        element: (
+    <Allblogs></Allblogs>
+           
+     
+        ),
+        loader: () => fetch("https://tech-corner-project.vercel.app/allBlog"),
       },
+     
       {
         path: "/blogDetails/:_id",
         element: (
             <BlogDetails></BlogDetails>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/blogDetails/${params._id}`),
+          fetch(`https://tech-corner-project.vercel.app/blogDetails/${params._id}`),
       },
       {
         path: "/wishlistBlogDetails/:_id",
         element: (
-            <WishlistBlogDetails></WishlistBlogDetails>
+           <PrivateRoute> <WishlistBlogDetails></WishlistBlogDetails></PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/wishlistBlogDetails/${params._id}`),
+          fetch(`https://tech-corner-project.vercel.app/wishlistBlogDetails/${params._id}`),
       },
       {
         path: "/updateBlog/:_id",
@@ -69,7 +74,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/updateBlog/${params._id}`),
+          fetch(`https://tech-corner-project.vercel.app/updateBlog/${params._id}`),
       },
       {
         path: "/wishlist",
@@ -78,12 +83,12 @@ const router = createBrowserRouter([
            
      
         ),
-        loader: () => fetch("http://localhost:5000/wishlist"),
+        loader: () => fetch("https://tech-corner-project.vercel.app/wishlist"),
       },
       {
         path: "/featuredBlogs",
         element: <FeaturedBlogs></FeaturedBlogs>,
-        loader: () => fetch("http://localhost:5000/allBlog"),
+        loader: () => fetch("https://tech-corner-project.vercel.app/allBlog"),
       },
     ],
   },

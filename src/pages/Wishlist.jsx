@@ -18,7 +18,7 @@ const Wishlist = () => {
 
   // Function to handle item deletion
   const handleRemove = (listId) => {
-    fetch(`http://localhost:5000/wishlist/${listId}`, {
+    fetch(`https://tech-corner-project.vercel.app/wishlist/${listId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const Wishlist = () => {
   };
 
   return (
-    <div className="px-24 bg-slate-100">
+    <div className="px-2 lg:px-24 bg-slate-100">
       <div className="py-10 text-black ">
         <p className="font-bold text-4xl">Wishlist</p>
       </div>

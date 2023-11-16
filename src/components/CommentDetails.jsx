@@ -5,7 +5,7 @@ const CommentDetails = ({ blogId, updateComment }) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/comment")
+    fetch("https://tech-corner-project.vercel.app/comment")
       .then((response) => response.json())
       .then((result) => {
         setComments(result);
@@ -20,7 +20,7 @@ const CommentDetails = ({ blogId, updateComment }) => {
   return (
 
       <div>
-        <div className="mb-12">
+        <div className="mb-0 lg:mb-12">
           <p className="text-2xl">Comments</p>
         </div>
         {filteredComment.map((ele) => (

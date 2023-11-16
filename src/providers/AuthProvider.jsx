@@ -1,111 +1,203 @@
+// import { createContext, useEffect } from "react";
+// import {
+//   getAuth,
+//   signInWithEmailAndPassword,
+//   GoogleAuthProvider,
+//   signInWithPopup,
+//   updateProfile,
+//   signOut,
+//   onAuthStateChanged,
+//   createUserWithEmailAndPassword,
+// } from "firebase/auth";
+// import PropTypes from "prop-types";
+// import { useState } from "react";
+// import app from "../../firebase.config";
+
+
+// const auth = getAuth(app);
+// export const AuthContext = createContext(null);
+// const googleProvider = new GoogleAuthProvider();
+
+// const AuthProvider = ({ children }) => {
+//   const [nameAndPhoto, setNameAndPhoto] = useState({});
+//   const [loading, setLoading] = useState(true);
+//   const [user, setUser] = useState(null);
+//   const [allBlog, setAllBlog] = useState([]);
+//   const [effect, setEffect] = useState(true);
+//   console.log(loading);
+//   // const allBlogUrl = "https://tech-corner-server.vercel.app/allBlog";
+
+//   useEffect(() => {
+//     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+//       setUser(currentUser);
+//       setLoading(false);
+//     });
+//     return () => {
+//       unSubscribe();
+//     };
+//   }, []);
+
+//   const signUp = (email, password) => {
+//     setLoading(true);
+//     return createUserWithEmailAndPassword(auth, email, password);
+//   };
+
+//   //login authentication
+//   const signIn = (email, password) => {
+//     setLoading(true);
+//     return signInWithEmailAndPassword(auth, email, password);
+//   };
+
+//   //google login authentication
+//   const signInGoogle = () => {
+//     setLoading(true);
+//     return signInWithPopup(auth, googleProvider);
+//   };
+
+//   //Update Name after register
+//   //As per firebase doc user logged in when register complete
+//   //So updateProfile method need to use to update displayName
+//   updateProfile(auth.currentUser, nameAndPhoto)
+//     .then()
+//     .catch((error) => {
+//       console.error(error);
+//     });
+
+//   //log out authentication
+//   const logOut = () => {
+//     setLoading(true);
+//     return signOut(auth);
+//   };
+
+//   const userDetails = auth.currentUser;
+//   const userEmail = user?.email || "";
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const response = await fetch("https://tech-corner-server.vercel.app/allBlog");
+//       const result = await response.json();
+//       setAllBlog(result);
+//      setLoading(true);
+//     };
+//     fetchData();
+//   }, [effect]);
+
+//   const authInfo = {
+//     signIn,
+//     signInGoogle,
+//     signUp,
+//     setNameAndPhoto,
+//     loading,
+//     user,
+//     logOut,
+//     userDetails,
+//     userEmail,
+//     allBlog,
+//     effect,
+//     setEffect,
+//   };
+
+//   return (
+//     <div>
+//       <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+//     </div>
+//   );
+// };
+
+// export default AuthProvider;
+
+// AuthProvider.propTypes = {
+//   children: PropTypes.node,
+// };
+
+
 import { createContext, useEffect } from "react";
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  updateProfile,
-  signOut,
-  onAuthStateChanged,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
-import PropTypes from "prop-types";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, updateProfile, signOut, onAuthStateChanged } from "firebase/auth";
+import PropTypes from 'prop-types';
 import { useState } from "react";
 import app from "../../firebase.config";
+
+
+
 
 const auth = getAuth(app);
 export const AuthContext = createContext(null);
 const googleProvider = new GoogleAuthProvider();
 
+
+
+
+
 const AuthProvider = ({ children }) => {
-  const [nameAndPhoto, setNameAndPhoto] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
-  const [allBlog, setAllBlog] = useState([]);
-  const [effect, setEffect] = useState(true);
+    const [nameAndPhoto, setNameAndPhoto] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState(null);
 
-  const allBlogUrl = "http://localhost:5000/allBlog";
 
-  useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      // console.log("done", currentUser);
-      setUser(currentUser);
-      setLoading(false);
-    });
-    return () => {
-      unSubscribe();
-    };
-  }, []);
+    const signUp = (email, password) => {
+        setLoading(true);
+        return createUserWithEmailAndPassword(auth, email, password)
+  
+  
+ 
+   }
 
-  const signUp = (email, password) => {
-    setLoading(true);
-    return createUserWithEmailAndPassword(auth, email, password);
-  };
+    //login authentication
+    const signIn = (email, password) => {
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    }
 
-  //login authentication
-  const signIn = (email, password) => {
-    setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
-  };
+    //google login authentication
+    const signInGoogle = () => {
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider);
+    }
 
-  //google login authentication
-  const signInGoogle = () => {
-    setLoading(true);
-    return signInWithPopup(auth, googleProvider);
-  };
+    //Update Name after register
+    //As per firebase doc user logged in when register complete
+    //So updateProfile method need to use to update displayName
+    updateProfile(auth.currentUser, nameAndPhoto)
+        
+        .then()
+        .catch((error) => {
+            console.error(error);
+          });
+    
+      //log out authentication
+    const logOut = () => {
+        setLoading(true);
+        return signOut(auth);
+    }
 
-  //Update Name after register
-  //As per firebase doc user logged in when register complete
-  //So updateProfile method need to use to update displayName
-  updateProfile(auth.currentUser, nameAndPhoto)
-    .then()
-    .catch((error) => {
-      console.error(error);
-    });
+    const userDetails = auth.currentUser;
+   
 
-  //log out authentication
-  const logOut = () => {
-    setLoading(true);
-    return signOut(auth);
-  };
+        useEffect(() => {
+            const unSubscribe = onAuthStateChanged(auth, currentUser => {
+                // console.log("done", currentUser);
+                setUser(currentUser);
+                setLoading(false);
+            });
+            return () => {
+                unSubscribe();
+            }
+        }, [])
 
-  const userDetails = auth.currentUser;
-  const userEmail = user?.email || "";
+    const authInfo = {signIn, signInGoogle, signUp, setNameAndPhoto, loading, user, logOut, userDetails}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(allBlogUrl);
-      const result = await response.json();
-      setAllBlog(result);
-      setLoading(true);
-    };
-    fetchData();
-  }, [effect]);
-
-  const authInfo = {
-    signIn,
-    signInGoogle,
-    signUp,
-    setNameAndPhoto,
-    loading,
-    user,
-    logOut,
-    userDetails,
-    userEmail,
-    allBlog,
-    effect,
-    setEffect,
-  };
-
-  return (
-    <div>
-      <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
-    </div>
-  );
+    return (
+        <div>
+             <AuthContext.Provider value={authInfo}>
+            {children}
+        </AuthContext.Provider>
+        </div>
+    );
 };
 
 export default AuthProvider;
 
+
 AuthProvider.propTypes = {
-  children: PropTypes.node,
-};
+    children: PropTypes.node
+}

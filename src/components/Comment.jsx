@@ -35,7 +35,7 @@ const Comment = ({ blogId, blogEmail }) => {
       dateTime,
     };
 
-    fetch("http://localhost:5000/comment", {
+    fetch("https://tech-corner-project.vercel.app/comment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const Comment = ({ blogId, blogEmail }) => {
 
   return (
     <div>
-      <div className="grid grid-cols-12 gap-10 mt-20 mb-28 ">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mt-20 mb-28 ">
         <div className="col-span-8">
           <CommentDetails
             blogId={blogId}
@@ -79,7 +79,7 @@ const Comment = ({ blogId, blogEmail }) => {
                   <textarea
                     type="text"
                     name="comment"
-                    placeholder="comment ..."
+                    placeholder="Comment ..."
                     className="input input-bordered resize-y rounded-3xl w-full h-56 p-3"
                     required
                   ></textarea>
