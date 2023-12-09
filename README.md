@@ -4,6 +4,7 @@
 ### Project Live Link: https://tech-corner-blog.web.app/
 
 
+Welcome to the client side repository of Tech Corner - a platform for exploring and managing blogs. 
 
 ## Project Features:
 
