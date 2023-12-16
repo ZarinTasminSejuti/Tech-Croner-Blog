@@ -11,7 +11,7 @@ Welcome to the client side repository of Tech Corner - a platform for exploring 
     - Node.js: The server side is powered by Node.js, providing a runtime for JavaScript on the server.
     - Express.js: We use Express.js as the web application framework to handle routing and middleware.
     - MongoDB: MongoDB serves as the database to store blog details, user information, and other relevant data.
-    - Firebase Authentication: User authentication is handled using Firebase Authentication, providing secure and easy-to-integrate authentication methods.
+    - Firebase Authentication: User authentication is handled using Firebase Authentication.
     
 
 ## Project Features:
